@@ -23,6 +23,12 @@ namespace LojaVirtual
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.Configure<CookiePolicyOptions>(options =>
+            //{
+            //    options.CheckConsentNeeded = context => true;
+            //    options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.None;
+            //});
+
             services.AddControllersWithViews();
         }
 
@@ -40,11 +46,22 @@ namespace LojaVirtual
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
+            app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseRouting();
 
             app.UseAuthorization();
+
+            /*
+             * https://www.site.com.br -> Qual controlador? (Gestão) -> Rotas
+             * https://www.site.com.br/Produto{controlador}/Visualizar{ação}/10{identificador}
+             * 
+             * 
+             * 
+             * 
+             */
 
             app.UseEndpoints(endpoints =>
             {
