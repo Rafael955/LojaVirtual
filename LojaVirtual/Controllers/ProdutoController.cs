@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LojaVirtual.Domain.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,23 @@ namespace LojaVirtual.Controllers
         [HttpGet("Visualizar")]
         public IActionResult Visualizar()
         {
-            return new ContentResult()
+            Produto produto = GetProduto();
+            return View(produto);
+            //return new ContentResult()
+            //{
+            //    Content = "<h1>Produto -> Visualizar</h1>",
+            //    ContentType = "text/html"
+            //};
+        }
+
+        private Produto GetProduto()
+        {
+            return new Produto()
             {
-                Content = "<h1>Produto -> Visualizar</h1>",
-                ContentType = "text/html"
-            };
+                Nome = "Xbox One x",
+                Descricao = "Jogue em 4k",
+                Valor = 2000.00M
+            }; ;
         }
     }
 }
