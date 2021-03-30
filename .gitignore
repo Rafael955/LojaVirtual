@@ -9,6 +9,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+SensibleData.resx
+SensibleData.Designer.cs
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

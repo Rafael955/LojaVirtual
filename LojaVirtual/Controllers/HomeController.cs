@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LojaVirtual.Domain.Models;
+using LojaVirtual.Libraries.Email;
 
 namespace LojaVirtual.Controllers
 {
@@ -27,6 +28,8 @@ namespace LojaVirtual.Controllers
                 Email = HttpContext.Request.Form["email"],
                 Texto = HttpContext.Request.Form["texto"]
             };
+
+            ContatoEmail.EnviarContatoPorEmail(contato);
 
             return new ContentResult() 
             { 
