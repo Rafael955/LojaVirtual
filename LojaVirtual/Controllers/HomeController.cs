@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LojaVirtual.Domain.Models;
 
 namespace LojaVirtual.Controllers
 {
@@ -20,16 +21,19 @@ namespace LojaVirtual.Controllers
 
         public IActionResult ContatoAcao()
         {
-            string nome = HttpContext.Request.Form["nome"];
-            string email = HttpContext.Request.Form["email"];
-            string texto = HttpContext.Request.Form["texto"];
+            Contato contato = new Contato()
+            {
+                Nome = HttpContext.Request.Form["nome"],
+                Email = HttpContext.Request.Form["email"],
+                Texto = HttpContext.Request.Form["texto"]
+            };
 
             return new ContentResult() 
             { 
                 Content = $"Dados recebidos com sucesso! " +
-                $"<br/>Nome: {nome}" +
-                $"<br/>E-mail: {email}" +
-                $"<br/>Texto: {texto}", 
+                $"<br/>Nome: {contato.Nome}" +
+                $"<br/>E-mail: {contato.Email}" +
+                $"<br/>Texto: {contato.Texto}", 
                 ContentType="text/html" 
             };
         }
