@@ -155,4 +155,20 @@
         </div> <!-- row.// -->
     </div>
 </main>
-
+<div class="row">
+    <div class="col-sm-6 offset-sm-3">
+        <form role="form" method="post" asp-controller="Home" asp-action="ContatoAcao">
+            
+            <div class="form-group">
+                <label for="cardNumber">E-mail</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-at"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="email" id="email" placeholder="">
+                </div> <!-- input-group.// -->
+            </div> <!-- form-group.// -->
+            <button class="subscribe btn btn-primary btn-block" type="submit"> Enviar </button>
+        </form>
+    </div>
+</div>
