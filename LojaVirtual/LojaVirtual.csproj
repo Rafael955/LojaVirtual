@@ -20,19 +20,4 @@
     <ProjectReference Include="..\LojaVirtual.Infrastructure\LojaVirtual.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="SensibleData.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>SensibleData.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="SensibleData.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>SensibleData.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-
 </Project>

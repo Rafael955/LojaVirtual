@@ -1,6 +1,13 @@
-﻿
+﻿@using LojaVirtual.Domain.Models;
+
 @{
     ViewData["Title"] = "Contato";
+
+    Contato contato = (Contato)ViewData["Contato"];
+
+    var nome = contato == null ? string.Empty : contato.Nome;
+    var email = contato == null ? string.Empty : contato.Email;
+    var texto = contato == null ? string.Empty : contato.Texto;
 }
 
 <main role="main">
@@ -40,7 +47,14 @@
 
                     <article class="card">
                         <div class="card-body p-5">
-                            <p class="alert alert-success">Mensagem de sucesso!</p>
+                            @if (ViewData["MsgSucesso"] != null)
+                            {
+                                <p class="alert alert-success">@ViewData["MsgSucesso"]</p>
+                            }
+                            @if (ViewData["MsgErro"] != null)
+                            {
+                                <p class="alert alert-danger">@Html.Raw(ViewData["MsgErro"])</p>
+                            }
 
                             <form role="form" method="post" asp-controller="Home" asp-action="ContatoAcao">
                                 <div class="form-group">
@@ -49,8 +63,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-user"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" name="nome" id="nome" placeholder=""
-                                               required="">
+                                        <input type="text" class="form-control" name="nome" id="nome" placeholder="" required="" value="@nome">
                                     </div> <!-- input-group.// -->
                                 </div> <!-- form-group.// -->
 
@@ -60,7 +73,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-at"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" name="email" id="email" placeholder="">
+                                        <input type="text" class="form-control" name="email" id="email" placeholder="" value="@email">
                                     </div> <!-- input-group.// -->
                                 </div> <!-- form-group.// -->
 
@@ -69,7 +82,7 @@
                                         <div class="form-group">
                                             <label><span class="hidden-xs">Texto</span> </label>
                                             <div class="form-inline">
-                                                <textarea class="form-control" name="texto" id="texto" style="width:100%"></textarea>
+                                                <textarea class="form-control" name="texto" id="texto" style="width:100%">@texto</textarea>
 
                                             </div>
                                         </div>

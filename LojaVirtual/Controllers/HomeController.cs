@@ -4,14 +4,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LojaVirtual.Domain.Models;
-using LojaVirtual.Libraries.Email;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using LojaVirtual.Domain.Libraries.Email;
 
 namespace LojaVirtual.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index([FromForm] NewsletterEmail newsletter)
+        {
+            //TODO - Adição no banco de dados
+
+            //TODO - Validações
+
             return View();
         }
 
@@ -22,23 +35,43 @@ namespace LojaVirtual.Controllers
 
         public IActionResult ContatoAcao()
         {
-            Contato contato = new Contato()
+            try
             {
-                Nome = HttpContext.Request.Form["nome"],
-                Email = HttpContext.Request.Form["email"],
-                Texto = HttpContext.Request.Form["texto"]
-            };
+                Contato contato = new Contato()
+                {
+                    Nome = HttpContext.Request.Form["nome"],
+                    Email = HttpContext.Request.Form["email"],
+                    Texto = HttpContext.Request.Form["texto"]
+                };
 
-            ContatoEmail.EnviarContatoPorEmail(contato);
+                var listaMensagens = new List<ValidationResult>();
+                var contexto = new ValidationContext(contato);
 
-            return new ContentResult() 
-            { 
-                Content = $"Dados recebidos com sucesso! " +
-                $"<br/>Nome: {contato.Nome}" +
-                $"<br/>E-mail: {contato.Email}" +
-                $"<br/>Texto: {contato.Texto}", 
-                ContentType="text/html" 
-            };
+                bool isValid = Validator.TryValidateObject(contato, contexto, listaMensagens, true);
+
+                if (isValid)
+                {
+                    ContatoEmail.EnviarContatoPorEmail(contato);
+
+                    ViewData["MsgSucesso"] = "Mensagem de contato enviada com sucesso!";
+                }
+                else
+                {
+                    string msgsErro = ExibeMensagensErro(listaMensagens);
+                    
+                    ViewData["msgErro"] =  msgsErro;
+                    ViewData["Contato"] = contato;
+
+                }
+            }
+            catch
+            {
+                ViewData["MsgErro"] = "Ops! Tivemos um erro, tente novamente mais tarde!";
+            }
+
+
+            return View("Contato");
+
         }
 
         public IActionResult Login()
@@ -54,6 +87,18 @@ namespace LojaVirtual.Controllers
         public IActionResult CarrinhoCompras()
         {
             return View();
+        }
+
+        private string ExibeMensagensErro(List<ValidationResult> listaMensagens)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var msg in listaMensagens)
+            {
+                sb.Append("- " + msg.ErrorMessage + "</br>");
+            }
+
+            return sb.ToString();
         }
     }
 }
