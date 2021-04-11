@@ -1,5 +1,7 @@
 using LojaVirtual.Domain.Configs;
+using LojaVirtual.Domain.Interfaces.IRepositories;
 using LojaVirtual.Infrastructure.Context;
+using LojaVirtual.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +34,8 @@ namespace LojaVirtual
             });
 
             services.Configure<Configuracoes>(Configuration.GetSection("ConfiguracoesGerais"));
+
+            services.AddTransient<INewsletterEmailRepository, NewsletterEmailRepository>();
 
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();

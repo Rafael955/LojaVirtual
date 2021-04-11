@@ -7,33 +7,46 @@ using LojaVirtual.Domain.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using LojaVirtual.Domain.Libraries.Email;
+using LojaVirtual.Infrastructure.Context;
+using LojaVirtual.Domain.Interfaces.IRepositories;
 
 namespace LojaVirtual.Controllers
 {
     public class HomeController : Controller
     {
+        private INewsletterEmailRepository _newsletterRepo;
+
+        public HomeController(INewsletterEmailRepository newsletterRepo)
+        {
+            _newsletterRepo = newsletterRepo;
+        }
+
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Index([FromForm] NewsletterEmail newsletter)
+        public async Task<IActionResult> Index([FromForm] NewsletterEmail newsletter)
         {
-            //TODO - Adição no banco de dados
+            if (ModelState.IsValid)
+            {
+                //TODO - Adição no banco de dados
+                await _newsletterRepo.Add(newsletter);
 
-            //TODO - Validações
+                return RedirectToAction(nameof(Index));
+            }
 
             return View();
         }
 
-        public IActionResult Contato()
+        public async Task<IActionResult> Contato()
         {
             return View();
         }
 
-        public IActionResult ContatoAcao()
+        public async Task<IActionResult> ContatoAcao()
         {
             try
             {

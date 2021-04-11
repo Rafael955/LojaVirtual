@@ -156,22 +156,25 @@
     </div>
 </main>
 
-<form role="form" method="post" asp-controller="Home" asp-action="ContatoAcao">
+<form role="form" method="post" asp-controller="Home" asp-action="Index">
     <div class="container">
         <div class="row">
+            @*<div asp-validation-summary=All></div>*@
             <div class="col-sm-6 offset-sm-2">
                 <label for="cardNumber">Cadastre seu e-mail para receber promoções!</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-at"></i></span>
                     </div>
-                    @*<input type="text" class="form-control" name="email" id="email" placeholder="" value="@Model.Email">*@
-                    @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    <input type="text" class="form-control" name="email" id="email" placeholder="" value="">
+                    @*@Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })*@
                 </div> <!-- input-group.// -->
+                <span style="color: red;" asp-validation-for="@Model.Email"></span>
             </div> <!-- form-group.// -->
             <div class="col-sm-2" style="margin-top:30px;">
                 <button class="subscribe btn btn-primary btn-block" type="submit"> Enviar </button>
             </div>
+
         </div>
     </div>
 
