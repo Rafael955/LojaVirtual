@@ -35,6 +35,8 @@ namespace LojaVirtual.Controllers
                 //TODO - Adição no banco de dados
                 await _newsletterRepo.Add(newsletter);
 
+                TempData["MsgSucesso"] = "E-mail cadastrado com sucesso! A partir de agora você irá receber promoções especiais em seu e-mail! Fique atento as novidades!";
+
                 return RedirectToAction(nameof(Index));
             }
 
