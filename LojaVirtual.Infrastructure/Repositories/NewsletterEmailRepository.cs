@@ -14,11 +14,5 @@ namespace LojaVirtual.Infrastructure.Repositories
         {
 
         }
-
-        public async Task Add(NewsletterEmail newsletter)
-        {
-            await _context.AddAsync(newsletter);
-            await _context.SaveChangesAsync();
-        }
     }
 }

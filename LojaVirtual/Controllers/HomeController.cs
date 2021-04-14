@@ -15,10 +15,12 @@ namespace LojaVirtual.Controllers
     public class HomeController : Controller
     {
         private INewsletterEmailRepository _newsletterRepo;
+        private IClienteRepository _clienteRepo;
 
-        public HomeController(INewsletterEmailRepository newsletterRepo)
+        public HomeController(INewsletterEmailRepository newsletterRepo, IClienteRepository clienteRepo)
         {
             _newsletterRepo = newsletterRepo;
+            _clienteRepo = clienteRepo;
         }
 
         [HttpGet]
@@ -33,7 +35,7 @@ namespace LojaVirtual.Controllers
             if (ModelState.IsValid)
             {
                 //TODO - Adição no banco de dados
-                await _newsletterRepo.Add(newsletter);
+                await _newsletterRepo.Adicionar(newsletter);
 
                 TempData["MsgSucesso"] = "E-mail cadastrado com sucesso! A partir de agora você irá receber promoções especiais em seu e-mail! Fique atento as novidades!";
 
@@ -68,20 +70,20 @@ namespace LojaVirtual.Controllers
                 {
                     ContatoEmail.EnviarContatoPorEmail(contato);
 
-                    ViewData["MsgSucesso"] = "Mensagem de contato enviada com sucesso!";
+                    TempData["MsgSucesso"] = "Mensagem de contato enviada com sucesso!";
                 }
                 else
                 {
                     string msgsErro = ExibeMensagensErro(listaMensagens);
-                    
-                    ViewData["msgErro"] =  msgsErro;
-                    ViewData["Contato"] = contato;
+
+                    TempData["msgErro"] =  msgsErro;
+                    TempData["Contato"] = contato;
 
                 }
             }
             catch
             {
-                ViewData["MsgErro"] = "Ops! Tivemos um erro, tente novamente mais tarde!";
+                TempData["MsgErro"] = "Ops! Tivemos um erro, tente novamente mais tarde!";
             }
 
 
@@ -89,17 +91,36 @@ namespace LojaVirtual.Controllers
 
         }
 
-        public IActionResult Login()
+        public async Task<IActionResult> Login()
         {
             return View();
         }
 
-        public IActionResult CadastroCliente()
+        [HttpGet]
+        public async Task<IActionResult> CadastroCliente()
         {
             return View();
         }
 
-        public IActionResult CarrinhoCompras()
+        [HttpPost]
+        public async Task<IActionResult> CadastroCliente([FromForm]Cliente cliente)
+        {
+            if (ModelState.IsValid)
+            {
+                // TODO - Grava no Banco
+                await _clienteRepo.Adicionar(cliente);
+
+                TempData["MsgSucesso"] = "Cadastro realizado com sucesso!";
+
+                //TODO - Implementar redirecionamentos diferentes (Painel, Carrinho de compras etc).
+
+                return RedirectToAction(nameof(CadastroCliente));
+            }
+
+            return View(cliente);
+        }
+
+        public async Task<IActionResult> CarrinhoCompras()
         {
             return View();
         }

@@ -36,6 +36,7 @@ namespace LojaVirtual
             services.Configure<Configuracoes>(Configuration.GetSection("ConfiguracoesGerais"));
 
             services.AddTransient<INewsletterEmailRepository, NewsletterEmailRepository>();
+            services.AddTransient<IClienteRepository, ClienteRepository>();
 
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();

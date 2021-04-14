@@ -2,12 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace LojaVirtual.Domain.Interfaces.IRepositories
 {
-    public interface INewsletterEmailRepository
+    public interface INewsletterEmailRepository : IRepository<NewsletterEmail>
     {
-        Task Add(NewsletterEmail newsletter);
+
     }
 }
