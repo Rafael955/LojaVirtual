@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using LojaVirtual.Domain.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using LojaVirtual.Domain.Libraries.Email;
-using LojaVirtual.Infrastructure.Context;
+using LojaVirtual.Domain.Libraries;
 using LojaVirtual.Domain.Interfaces.IRepositories;
+using Microsoft.AspNetCore.Http;
+using System.Threading;
 
 namespace LojaVirtual.Controllers
 {
@@ -50,50 +49,89 @@ namespace LojaVirtual.Controllers
             return View();
         }
 
-        public async Task<IActionResult> ContatoAcao()
+        public async Task<IActionResult> ContatoAcao(CancellationToken cancellationtoken)
         {
             try
             {
-                Contato contato = new Contato()
+                await Task.Run(() =>
                 {
-                    Nome = HttpContext.Request.Form["nome"],
-                    Email = HttpContext.Request.Form["email"],
-                    Texto = HttpContext.Request.Form["texto"]
-                };
+                    Contato contato = new Contato()
+                    {
+                        Nome = HttpContext.Request.Form["nome"],
+                        Email = HttpContext.Request.Form["email"],
+                        Texto = HttpContext.Request.Form["texto"]
+                    };
 
-                var listaMensagens = new List<ValidationResult>();
-                var contexto = new ValidationContext(contato);
+                    var listaMensagens = new List<ValidationResult>();
+                    var contexto = new ValidationContext(contato);
 
-                bool isValid = Validator.TryValidateObject(contato, contexto, listaMensagens, true);
+                    bool isValid = Validator.TryValidateObject(contato, contexto, listaMensagens, true);
+                   
+                    if (isValid)
+                    {
+                        ContatoEmail.EnviarContatoPorEmail(contato);
 
-                if (isValid)
-                {
-                    ContatoEmail.EnviarContatoPorEmail(contato);
+                        TempData["MsgSucesso"] = "Mensagem de contato enviada com sucesso!";
+                    }
+                    else
+                    {
+                        string msgsErro = ExibeMensagensErro(listaMensagens);
 
-                    TempData["MsgSucesso"] = "Mensagem de contato enviada com sucesso!";
-                }
-                else
-                {
-                    string msgsErro = ExibeMensagensErro(listaMensagens);
+                        TempData["msgErro"] = msgsErro;
+                        TempData["Contato"] = contato;
+                    }
+                }, cancellationtoken);
+            }
+            catch (TaskCanceledException)
+            {
 
-                    TempData["msgErro"] =  msgsErro;
-                    TempData["Contato"] = contato;
-
-                }
             }
             catch
             {
                 TempData["MsgErro"] = "Ops! Tivemos um erro, tente novamente mais tarde!";
             }
 
-
             return View("Contato");
-
         }
 
+        [HttpGet]
         public async Task<IActionResult> Login()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login([FromForm] Cliente cliente)
+        {
+            if (cliente.Email == "rafaelcaffonso@gmail.com" && cliente.Senha == "123456")
+            {
+                HttpContext.Session.Set("Id", new byte[] { 52 });
+                HttpContext.Session.SetString("Email", cliente.Email);
+                HttpContext.Session.SetInt32("Idade", 32);
+
+                return await Task.FromResult(new ContentResult { Content = "Logado!" });
+            }
+
+            return await Task.FromResult(new ContentResult { Content = "Acesso Negado!" });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Painel()
+        {
+            byte[] UsuarioId;
+
+            if (HttpContext.Session.TryGetValue("Id", out UsuarioId))
+            {
+                return await Task.FromResult(new ContentResult()
+                {
+                    Content =
+                    "Usuário " + UsuarioId[0] + ". " +
+                    "Email: " + HttpContext.Session.GetString("Email") + ". " +
+                    "Idade: " + HttpContext.Session.GetInt32("Idade") + "."
+                });
+            }
+
+            return await Task.FromResult(new ContentResult { Content = "Acesso Negado!" });
         }
 
         [HttpGet]
@@ -103,7 +141,7 @@ namespace LojaVirtual.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CadastroCliente([FromForm]Cliente cliente)
+        public async Task<IActionResult> CadastroCliente([FromForm] Cliente cliente)
         {
             if (ModelState.IsValid)
             {

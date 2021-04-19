@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using LojaVirtual.Domain.Libraries.Lang;
+using LojaVirtual.Domain.Libraries;
 
 namespace LojaVirtual.Domain.Models
 {

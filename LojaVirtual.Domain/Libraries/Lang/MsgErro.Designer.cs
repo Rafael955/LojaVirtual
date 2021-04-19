@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LojaVirtual.Domain.Libraries.Lang {
+namespace LojaVirtual.Domain.Libraries {
     using System;
     
     

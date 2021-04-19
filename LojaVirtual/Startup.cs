@@ -1,9 +1,11 @@
 using LojaVirtual.Domain.Configs;
 using LojaVirtual.Domain.Interfaces.IRepositories;
+using LojaVirtual.Domain.Libraries;
 using LojaVirtual.Infrastructure.Context;
 using LojaVirtual.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,14 +31,22 @@ namespace LojaVirtual
             //    options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.None;
             //});
 
+            /*
+             *  Session - Configuração
+             */
+            services.AddMemoryCache(); // Guardar os dados na memória
+            services.AddSession();
+
             services.AddDbContext<LojaVirtualContext>(option => {
                 option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
             services.Configure<Configuracoes>(Configuration.GetSection("ConfiguracoesGerais"));
 
-            services.AddTransient<INewsletterEmailRepository, NewsletterEmailRepository>();
-            services.AddTransient<IClienteRepository, ClienteRepository>();
+            services.AddScoped<Sessao>();
+            services.AddHttpContextAccessor();
+            services.AddScoped<INewsletterEmailRepository, NewsletterEmailRepository>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
 
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
@@ -59,6 +69,8 @@ namespace LojaVirtual
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
+            app.UseSession();
 
             app.UseRouting();
 
@@ -67,10 +79,6 @@ namespace LojaVirtual
             /*
              * https://www.site.com.br -> Qual controlador? (Gestão) -> Rotas
              * https://www.site.com.br/Produto{controlador}/Visualizar{ação}/10{identificador}
-             * 
-             * 
-             * 
-             * 
              */
 
             app.UseEndpoints(endpoints =>

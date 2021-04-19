@@ -1,11 +1,8 @@
 ﻿using System.Net;
 using System.Net.Mail;
-using System.Reflection;
-using System.Resources;
 using LojaVirtual.Domain.Models;
-using LojaVirtual.Domain.Libraries.SensibleData;
 
-namespace LojaVirtual.Domain.Libraries.Email
+namespace LojaVirtual.Domain.Libraries
 {
     public class ContatoEmail
     {
@@ -14,7 +11,7 @@ namespace LojaVirtual.Domain.Libraries.Email
 
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("rafaelcaffonso@gmail.com", SensibleData.SensibleData.GmailPassword);
+            smtp.Credentials = new NetworkCredential("rafaelcaffonso@gmail.com", SensibleData.GmailPassword);
             smtp.EnableSsl = true;
 
             /*

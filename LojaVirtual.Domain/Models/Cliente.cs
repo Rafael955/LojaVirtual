@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LojaVirtual.Domain.Libraries;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using LojaVirtual.Domain.Libraries.Lang;
 
 namespace LojaVirtual.Domain.Models
 {
@@ -31,7 +29,5 @@ namespace LojaVirtual.Domain.Models
         [Required(ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro001")]
         [MinLength(6, ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro002")]
         public string Senha { get; set; }
-        
-
     }
 }
