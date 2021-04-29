@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Contato";
 
     Contato contato = (Contato)ViewData["Contato"];
@@ -48,11 +47,11 @@
                         <div class="card-body p-5">
                             @if (ViewData["MsgSucesso"] != null)
                             {
-                                <p class="alert alert-success">@ViewData["MsgSucesso"]</p>
+                            <p class="alert alert-success">@ViewData["MsgSucesso"]</p>
                             }
                             @if (ViewData["MsgErro"] != null)
                             {
-                                <p class="alert alert-danger">@Html.Raw(ViewData["MsgErro"])</p>
+                            <p class="alert alert-danger">@Html.Raw(ViewData["MsgErro"])</p>
                             }
 
                             <form role="form" method="post" asp-controller="Home" asp-action="ContatoAcao">
@@ -82,7 +81,6 @@
                                             <label><span class="hidden-xs">Texto</span> </label>
                                             <div class="form-inline">
                                                 <textarea class="form-control" name="texto" id="texto" style="width:100%">@texto</textarea>
-
                                             </div>
                                         </div>
                                     </div>
@@ -91,11 +89,8 @@
                             </form>
                         </div> <!-- card-body.// -->
                     </article> <!-- card.// -->
-
                 </div> <!-- code-wrap.// -->
-
             </aside>
         </div>
     </div>
 </main>
-

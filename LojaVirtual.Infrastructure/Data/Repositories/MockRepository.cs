@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace LojaVirtual.Infrastructure.Repositories
+namespace LojaVirtual.Infrastructure.Data.Repositories
 {
     public abstract class MockRepository<T> : IRepository<T> where T : Entity
     {

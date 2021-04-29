@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
-namespace LojaVirtual.Infrastructure.Migrations
+namespace LojaVirtual.Infrastructure.Data.Migrations
 {
     public partial class Initial : Migration
     {

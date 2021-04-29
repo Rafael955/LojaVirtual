@@ -127,7 +127,6 @@
    * --------------------------------------------------------------------------
    */
 
-
   var Util = {
     TRANSITION_END: 'bsTransitionEnd',
     getUID: function getUID(prefix) {
@@ -153,7 +152,6 @@
         return 0;
       } // Get transition-duration of the element
 
-
       var transitionDuration = $(element).css('transition-duration');
       var transitionDelay = $(element).css('transition-delay');
       var floatTransitionDuration = parseFloat(transitionDuration);
@@ -162,7 +160,6 @@
       if (!floatTransitionDuration && !floatTransitionDelay) {
         return 0;
       } // If multiple durations are defined, take the first
-
 
       transitionDuration = transitionDuration.split(',')[0];
       transitionDelay = transitionDelay.split(',')[0];
@@ -199,7 +196,6 @@
         return null;
       } // Can find the shadow root otherwise it'll return the document
 
-
       if (typeof element.getRootNode === 'function') {
         var root = element.getRootNode();
         return root instanceof ShadowRoot ? root : null;
@@ -208,7 +204,6 @@
       if (element instanceof ShadowRoot) {
         return element;
       } // when we don't find a shadow root
-
 
       if (!element.parentNode) {
         return null;
@@ -248,7 +243,6 @@
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Alert =
@@ -257,7 +251,6 @@
     function Alert(element) {
       this._element = element;
     } // Getters
-
 
     var _proto = Alert.prototype;
 
@@ -282,7 +275,6 @@
       $.removeData(this._element, DATA_KEY);
       this._element = null;
     }; // Private
-
 
     _proto._getRootElement = function _getRootElement(element) {
       var selector = Util.getSelectorFromElement(element);
@@ -326,7 +318,6 @@
       $(element).detach().trigger(Event.CLOSED).remove();
     }; // Static
 
-
     Alert._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
         var $element = $(this);
@@ -367,7 +358,6 @@
    * Data Api implementation
    * ------------------------------------------------------------------------
    */
-
 
   $(document).on(Event.CLICK_DATA_API, Selector.DISMISS, Alert._handleDismiss(new Alert()));
   /**
@@ -416,7 +406,6 @@
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Button =
@@ -425,7 +414,6 @@
     function Button(element) {
       this._element = element;
     } // Getters
-
 
     var _proto = Button.prototype;
 
@@ -479,7 +467,6 @@
       this._element = null;
     }; // Static
 
-
     Button._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
         var data = $(this).data(DATA_KEY$1);
@@ -509,7 +496,6 @@
    * Data Api implementation
    * ------------------------------------------------------------------------
    */
-
 
   $(document).on(Event$1.CLICK_DATA_API, Selector$1.DATA_TOGGLE_CARROT, function (event) {
     event.preventDefault();
@@ -623,7 +609,6 @@
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Carousel =
@@ -646,7 +631,6 @@
 
       this._addEventListeners();
     } // Getters
-
 
     var _proto = Carousel.prototype;
 
@@ -742,7 +726,6 @@
       this._indicatorsElement = null;
     }; // Private
 
-
     _proto._getConfig = function _getConfig(config) {
       config = _objectSpread({}, Default, config);
       Util.typeCheckConfig(NAME$2, config, DefaultType);
@@ -761,7 +744,6 @@
       if (direction > 0) {
         this.prev();
       } // swipe right
-
 
       if (direction < 0) {
         this.next();
@@ -1028,7 +1010,6 @@
       }
     }; // Static
 
-
     Carousel._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
         var data = $(this).data(DATA_KEY$2);
@@ -1111,7 +1092,6 @@
    * ------------------------------------------------------------------------
    */
 
-
   $(document).on(Event$2.CLICK_DATA_API, Selector$2.DATA_SLIDE, Carousel._dataApiClickHandler);
   $(window).on(Event$2.LOAD_DATA_API, function () {
     var carousels = [].slice.call(document.querySelectorAll(Selector$2.DATA_RIDE));
@@ -1181,7 +1161,6 @@
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Collapse =
@@ -1218,7 +1197,6 @@
         this.toggle();
       }
     } // Getters
-
 
     var _proto = Collapse.prototype;
 
@@ -1367,7 +1345,6 @@
       this._isTransitioning = null;
     }; // Private
 
-
     _proto._getConfig = function _getConfig(config) {
       config = _objectSpread({}, Default$1, config);
       config.toggle = Boolean(config.toggle); // Coerce string values
@@ -1411,7 +1388,6 @@
         $(triggerArray).toggleClass(ClassName$3.COLLAPSED, !isOpen).attr('aria-expanded', isOpen);
       }
     }; // Static
-
 
     Collapse._getTargetFromElement = function _getTargetFromElement(element) {
       var selector = Util.getSelectorFromElement(element);
@@ -1463,7 +1439,6 @@
    * Data Api implementation
    * ------------------------------------------------------------------------
    */
-
 
   $(document).on(Event$3.CLICK_DATA_API, Selector$3.DATA_TOGGLE, function (event) {
     // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
@@ -1576,7 +1551,6 @@
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Dropdown =
@@ -1591,7 +1565,6 @@
 
       this._addEventListeners();
     } // Getters
-
 
     var _proto = Dropdown.prototype;
 
@@ -1621,7 +1594,6 @@
         return;
       } // Disable totally Popper.js for Dropdown in Navbar
 
-
       if (!this._inNavbar) {
         /**
          * Check for Popper dependency
@@ -1645,7 +1617,6 @@
         // to allow the menu to "escape" the scroll parent's boundaries
         // https://github.com/twbs/bootstrap/issues/24251
 
-
         if (this._config.boundary !== 'scrollParent') {
           $(parent).addClass(ClassName$4.POSITION_STATIC);
         }
@@ -1655,7 +1626,6 @@
       // empty mouseover listeners to the body's immediate children;
       // only needed because of broken event delegation on iOS
       // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
-
 
       if ('ontouchstart' in document.documentElement && $(parent).closest(Selector$4.NAVBAR_NAV).length === 0) {
         $(document.body).children().on('mouseover', null, $.noop);
@@ -1733,7 +1703,6 @@
         this._popper.scheduleUpdate();
       }
     }; // Private
-
 
     _proto._addEventListeners = function _addEventListeners() {
       var _this = this;
@@ -1814,7 +1783,6 @@
             boundariesElement: this._config.boundary
           }
         } // Disable Popper.js if we have a static display
-
       };
 
       if (this._config.display === 'static') {
@@ -1825,7 +1793,6 @@
 
       return popperConfig;
     }; // Static
-
 
     Dropdown._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
@@ -1889,7 +1856,6 @@
         } // If this is a touch-enabled device we remove the extra
         // empty mouseover listeners we added for iOS support
 
-
         if ('ontouchstart' in document.documentElement) {
           $(document.body).children().off('mouseover', null, $.noop);
         }
@@ -1910,7 +1876,6 @@
 
       return parent || element.parentNode;
     }; // eslint-disable-next-line complexity
-
 
     Dropdown._dataApiKeydownHandler = function _dataApiKeydownHandler(event) {
       // If not input/textarea:
@@ -1995,7 +1960,6 @@
    * ------------------------------------------------------------------------
    */
 
-
   $(document).on(Event$4.KEYDOWN_DATA_API, Selector$4.DATA_TOGGLE, Dropdown._dataApiKeydownHandler).on(Event$4.KEYDOWN_DATA_API, Selector$4.MENU, Dropdown._dataApiKeydownHandler).on(Event$4.CLICK_DATA_API + " " + Event$4.KEYUP_DATA_API, Dropdown._clearMenus).on(Event$4.CLICK_DATA_API, Selector$4.DATA_TOGGLE, function (event) {
     event.preventDefault();
     event.stopPropagation();
@@ -2075,7 +2039,6 @@
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Modal =
@@ -2092,7 +2055,6 @@
       this._isTransitioning = false;
       this._scrollbarWidth = 0;
     } // Getters
-
 
     var _proto = Modal.prototype;
 
@@ -2219,7 +2181,6 @@
     _proto.handleUpdate = function handleUpdate() {
       this._adjustDialog();
     }; // Private
-
 
     _proto._getConfig = function _getConfig(config) {
       config = _objectSpread({}, Default$3, config);
@@ -2418,7 +2379,6 @@
     // todo (fat): these should probably be refactored out of modal.js
     // ----------------------------------------------------------------------
 
-
     _proto._adjustDialog = function _adjustDialog() {
       var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
 
@@ -2504,7 +2464,6 @@
       return scrollbarWidth;
     }; // Static
 
-
     Modal._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
         var data = $(this).data(DATA_KEY$5);
@@ -2547,7 +2506,6 @@
    * Data Api implementation
    * ------------------------------------------------------------------------
    */
-
 
   $(document).on(Event$5.CLICK_DATA_API, Selector$5.DATA_TOGGLE, function (event) {
     var _this10 = this;
@@ -2677,7 +2635,6 @@
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Tooltip =
@@ -2692,7 +2649,6 @@
         throw new TypeError('Bootstrap\'s tooltips require Popper.js (https://popper.js.org/)');
       } // private
 
-
       this._isEnabled = true;
       this._timeout = 0;
       this._hoverState = '';
@@ -2705,7 +2661,6 @@
 
       this._setListeners();
     } // Getters
-
 
     var _proto = Tooltip.prototype;
 
@@ -2938,7 +2893,6 @@
       }
     }; // Protected
 
-
     _proto.isWithContent = function isWithContent() {
       return Boolean(this.getTitle());
     };
@@ -2984,7 +2938,6 @@
 
       return title;
     }; // Private
-
 
     _proto._getContainer = function _getContainer() {
       if (this.config.container === false) {
@@ -3190,7 +3143,6 @@
       this.config.animation = initConfigAnimation;
     }; // Static
 
-
     Tooltip._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
         var data = $(this).data(DATA_KEY$6);
@@ -3261,7 +3213,6 @@
    * ------------------------------------------------------------------------
    */
 
-
   $.fn[NAME$6] = Tooltip._jQueryInterface;
   $.fn[NAME$6].Constructor = Tooltip;
 
@@ -3319,7 +3270,6 @@
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Popover =
@@ -3362,7 +3312,6 @@
       $tip.removeClass(ClassName$7.FADE + " " + ClassName$7.SHOW);
     }; // Private
 
-
     _proto._getContent = function _getContent() {
       return this.element.getAttribute('data-content') || this.config.content;
     };
@@ -3375,7 +3324,6 @@
         $tip.removeClass(tabClass.join(''));
       }
     }; // Static
-
 
     Popover._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
@@ -3448,7 +3396,6 @@
    * ------------------------------------------------------------------------
    */
 
-
   $.fn[NAME$7] = Popover._jQueryInterface;
   $.fn[NAME$7].Constructor = Popover;
 
@@ -3508,7 +3455,6 @@
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var ScrollSpy =
@@ -3532,7 +3478,6 @@
 
       this._process();
     } // Getters
-
 
     var _proto = ScrollSpy.prototype;
 
@@ -3588,7 +3533,6 @@
       this._activeTarget = null;
       this._scrollHeight = null;
     }; // Private
-
 
     _proto._getConfig = function _getConfig(config) {
       config = _objectSpread({}, Default$6, typeof config === 'object' && config ? config : {});
@@ -3697,7 +3641,6 @@
       });
     }; // Static
 
-
     ScrollSpy._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
         var data = $(this).data(DATA_KEY$8);
@@ -3738,7 +3681,6 @@
    * Data Api implementation
    * ------------------------------------------------------------------------
    */
-
 
   $(window).on(Event$8.LOAD_DATA_API, function () {
     var scrollSpys = [].slice.call(document.querySelectorAll(Selector$8.DATA_SPY));
@@ -3803,7 +3745,6 @@
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Tab =
@@ -3812,7 +3753,6 @@
     function Tab(element) {
       this._element = element;
     } // Getters
-
 
     var _proto = Tab.prototype;
 
@@ -3881,7 +3821,6 @@
       this._element = null;
     }; // Private
 
-
     _proto._activate = function _activate(element, container, callback) {
       var _this2 = this;
 
@@ -3940,7 +3879,6 @@
       }
     }; // Static
 
-
     Tab._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
         var $this = $(this);
@@ -3975,7 +3913,6 @@
    * Data Api implementation
    * ------------------------------------------------------------------------
    */
-
 
   $(document).on(Event$9.CLICK_DATA_API, Selector$9.DATA_TOGGLE, function (event) {
     event.preventDefault();
@@ -4037,7 +3974,6 @@
      * Class Definition
      * ------------------------------------------------------------------------
      */
-
   };
 
   var Toast =
@@ -4050,7 +3986,6 @@
 
       this._setListeners();
     } // Getters
-
 
     var _proto = Toast.prototype;
 
@@ -4120,7 +4055,6 @@
       this._config = null;
     }; // Private
 
-
     _proto._getConfig = function _getConfig(config) {
       config = _objectSpread({}, Default$7, $(this._element).data(), typeof config === 'object' && config ? config : {});
       Util.typeCheckConfig(NAME$a, config, this.constructor.DefaultType);
@@ -4153,7 +4087,6 @@
         complete();
       }
     }; // Static
-
 
     Toast._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
@@ -4196,7 +4129,6 @@
    * jQuery
    * ------------------------------------------------------------------------
    */
-
 
   $.fn[NAME$a] = Toast._jQueryInterface;
   $.fn[NAME$a].Constructor = Toast;
@@ -4244,6 +4176,5 @@
   exports.Tooltip = Tooltip;
 
   Object.defineProperty(exports, '__esModule', { value: true });
-
 })));
 //# sourceMappingURL=bootstrap.js.map

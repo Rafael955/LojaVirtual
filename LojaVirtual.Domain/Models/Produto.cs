@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text;
-
-namespace LojaVirtual.Domain.Models
+﻿namespace LojaVirtual.Domain.Models
 {
     public class Produto : Entity
     {

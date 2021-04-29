@@ -1,12 +1,12 @@
 ﻿using LojaVirtual.Domain.Interfaces.IRepositories;
 using LojaVirtual.Domain.Models;
-using LojaVirtual.Infrastructure.Context;
+using LojaVirtual.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LojaVirtual.Infrastructure.Repositories
+namespace LojaVirtual.Infrastructure.Data.Repositories
 {
     public class ClienteRepository : Repository<Cliente>, IClienteRepository
     {
@@ -17,7 +17,6 @@ namespace LojaVirtual.Infrastructure.Repositories
 
         public ClienteRepository(LojaVirtualContext context) : base(context)
         {
-
         }
 
         public async Task<Cliente> Login(string email, string senha)
@@ -35,10 +34,11 @@ namespace LojaVirtual.Infrastructure.Repositories
 
         public override async Task Atualizar(Cliente entity)
         {
-            await Task.Run(() => {
+            await Task.Run(() =>
+            {
                 Cliente client = _lista.FirstOrDefault(x => x.Id == entity.Id);
 
-                if(client != null)
+                if (client != null)
                 {
                     client.CPF = entity.CPF;
                     client.Email = entity.Email;

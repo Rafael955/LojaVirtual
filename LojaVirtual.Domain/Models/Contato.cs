@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LojaVirtual.Domain.Libraries;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using LojaVirtual.Domain.Libraries;
 
 namespace LojaVirtual.Domain.Models
 {

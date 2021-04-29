@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LojaVirtual.Domain.Libraries
 {
@@ -13,6 +10,7 @@ namespace LojaVirtual.Domain.Libraries
         {
             _context = context;
         }
+
         //CRUD
 
         public void Cadastrar(string key, string valor)
@@ -47,7 +45,7 @@ namespace LojaVirtual.Domain.Libraries
 
         public void RemoverTodos()
         {
-            _context.HttpContext.Session.Clear(); 
+            _context.HttpContext.Session.Clear();
         }
     }
 }

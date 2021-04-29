@@ -1,27 +1,53 @@
 /* --------------------- titles ---------------------- */
-.section-heading{ margin-bottom:20px; margin-top: 10px;}
-.title-section{padding-right:15px; }
-.title-text{margin-top:45px; margin-bottom:20px;}
-.title-category{margin:0; padding: 1rem 1rem; }
-.title-bg{padding:7px 15px; color:#fff;}
+.section-heading {
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
 
-.font-title{font-family:$font-title;}
+.title-section {
+    padding-right: 15px;
+}
 
-.text-lg{font-size:125%;}
-.word-limit{
-    height:40px;
-    line-height:20px;
+.title-text {
+    margin-top: 45px;
+    margin-bottom: 20px;
+}
+
+.title-category {
+    margin: 0;
+    padding: 1rem 1rem;
+}
+
+.title-bg {
+    padding: 7px 15px;
+    color: #fff;
+}
+
+.font-title {
+    font-family: $font-title;
+}
+
+.text-lg {
+    font-size: 125%;
+}
+
+.word-limit {
+    height: 40px;
+    line-height: 20px;
 }
 /* ==================  title element ================ */
-.heading-line{position: relative;
-	.title-section{
-		position: relative;
-		display: inline-block;
-		padding-right: 15px;
-		background-color: inherit;
-		z-index: 2;
-	}
+.heading-line {
+    position: relative;
+
+    .title-section {
+        position: relative;
+        display: inline-block;
+        padding-right: 15px;
+        background-color: inherit;
+        z-index: 2;
+    }
 }
+
 .heading-line::before {
     top: 43%;
     border-top-style: solid;
@@ -35,15 +61,31 @@
     overflow: hidden;
 }
 
-.b{font-weight:600;}
+.b {
+    font-weight: 600;
+}
 
-.white{color:#fff}
-.black, .dark{color:#000}
+.white {
+    color: #fff
+}
+
+.black, .dark {
+    color: #000
+}
 
 /* ==================  title helpers ================ */
-.rtl{direction:rtl;}
-.ltr{direction:ltr;}
+.rtl {
+    direction: rtl;
+}
 
+.ltr {
+    direction: ltr;
+}
 
-.lh-sm{line-height: 1.2;}
-.lh-lg{line-height: 1.6;}
+.lh-sm {
+    line-height: 1.2;
+}
+
+.lh-lg {
+    line-height: 1.6;
+}

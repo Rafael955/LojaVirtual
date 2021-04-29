@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using LojaVirtual.Domain.Interfaces.IRepositories;
+using LojaVirtual.Domain.Libraries;
 using LojaVirtual.Domain.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using LojaVirtual.Domain.Libraries;
-using LojaVirtual.Domain.Interfaces.IRepositories;
-using Microsoft.AspNetCore.Http;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace LojaVirtual.Controllers
 {
@@ -15,11 +16,13 @@ namespace LojaVirtual.Controllers
     {
         private INewsletterEmailRepository _newsletterRepo;
         private IClienteRepository _clienteRepo;
+        private LoginCliente _loginCliente;
 
-        public HomeController(INewsletterEmailRepository newsletterRepo, IClienteRepository clienteRepo)
+        public HomeController(INewsletterEmailRepository newsletterRepo, IClienteRepository clienteRepo, LoginCliente loginCliente)
         {
             _newsletterRepo = newsletterRepo;
             _clienteRepo = clienteRepo;
+            _loginCliente = loginCliente;
         }
 
         [HttpGet]
@@ -66,7 +69,7 @@ namespace LojaVirtual.Controllers
                     var contexto = new ValidationContext(contato);
 
                     bool isValid = Validator.TryValidateObject(contato, contexto, listaMensagens, true);
-                   
+
                     if (isValid)
                     {
                         ContatoEmail.EnviarContatoPorEmail(contato);
@@ -84,7 +87,6 @@ namespace LojaVirtual.Controllers
             }
             catch (TaskCanceledException)
             {
-
             }
             catch
             {
@@ -103,31 +105,41 @@ namespace LojaVirtual.Controllers
         [HttpPost]
         public async Task<IActionResult> Login([FromForm] Cliente cliente)
         {
-            if (cliente.Email == "rafaelcaffonso@gmail.com" && cliente.Senha == "123456")
-            {
-                HttpContext.Session.Set("Id", new byte[] { 52 });
-                HttpContext.Session.SetString("Email", cliente.Email);
-                HttpContext.Session.SetInt32("Idade", 32);
+            Cliente clienteDB = await _clienteRepo.Login(cliente.Email, cliente.Senha);
 
-                return await Task.FromResult(new ContentResult { Content = "Logado!" });
+            if (clienteDB != null)
+            {
+                //HttpContext.Session.Set("Id", new byte[] { 52 });
+                //HttpContext.Session.SetString("Email", cliente.Email);
+                //HttpContext.Session.SetInt32("Idade", 32);
+
+                _loginCliente.Login(clienteDB);
+
+                // return await Task.FromResult(new ContentResult { Content = "Logado!" });
+
+                return new RedirectResult(Url.Action(nameof(Painel)));
             }
 
-            return await Task.FromResult(new ContentResult { Content = "Acesso Negado!" });
+            TempData["MsgErro"] = "Usuário não encontrado, por favor verifique o e-mail e senha digitados!";
+            return View();
         }
 
         [HttpGet]
         public async Task<IActionResult> Painel()
         {
-            byte[] UsuarioId;
-
-            if (HttpContext.Session.TryGetValue("Id", out UsuarioId))
+            //byte[] UsuarioId;
+            Cliente cliente = _loginCliente.ObterCliente();
+            //if (HttpContext.Session.TryGetValue("Id", out UsuarioId))
+            if (cliente != null)
             {
                 return await Task.FromResult(new ContentResult()
                 {
                     Content =
-                    "Usuário " + UsuarioId[0] + ". " +
-                    "Email: " + HttpContext.Session.GetString("Email") + ". " +
-                    "Idade: " + HttpContext.Session.GetInt32("Idade") + "."
+                    "Usuário " + cliente.Nome + ", " +
+                    "Id: " + cliente.Id + ", " +
+                    "Email: " + cliente.Email + ", " +
+                    "Idade: " + (DateTime.Now.Year - cliente.Nascimento.Year) + ". " +
+                    "LOGADO!"
                 });
             }
 

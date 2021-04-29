@@ -1,15 +1,13 @@
 ﻿using LojaVirtual.Domain.Interfaces.IRepositories;
 using LojaVirtual.Domain.Models;
-using LojaVirtual.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace LojaVirtual.Infrastructure.Repositories
+namespace LojaVirtual.Infrastructure.Data.Repositories
 {
     public abstract class Repository<T> : IRepository<T> where T : Entity
     {

@@ -1,18 +1,13 @@
 ﻿using LojaVirtual.Domain.Interfaces.IRepositories;
 using LojaVirtual.Domain.Models;
-using LojaVirtual.Infrastructure.Context;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+using LojaVirtual.Infrastructure.Data.Context;
 
-namespace LojaVirtual.Infrastructure.Repositories
+namespace LojaVirtual.Infrastructure.Data.Repositories
 {
     public class NewsletterEmailRepository : Repository<NewsletterEmail>, INewsletterEmailRepository
     {
         public NewsletterEmailRepository(LojaVirtualContext context) : base(context)
         {
-
         }
     }
 }

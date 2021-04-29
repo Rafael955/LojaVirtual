@@ -1,6 +1,6 @@
-﻿using System.Net;
+﻿using LojaVirtual.Domain.Models;
+using System.Net;
 using System.Net.Mail;
-using LojaVirtual.Domain.Models;
 
 namespace LojaVirtual.Domain.Libraries
 {
@@ -8,7 +8,6 @@ namespace LojaVirtual.Domain.Libraries
     {
         public static void EnviarContatoPorEmail(Contato contato)
         {
-
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
             smtp.UseDefaultCredentials = false;
             smtp.Credentials = new NetworkCredential("rafaelcaffonso@gmail.com", SensibleData.GmailPassword);

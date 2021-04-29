@@ -7,5 +7,4 @@ namespace LojaVirtual.Domain.Interfaces.IRepositories
     {
         Task<Cliente> Login(string email, string senha);
     }
-
 }

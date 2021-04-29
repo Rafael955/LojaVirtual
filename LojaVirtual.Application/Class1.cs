@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LojaVirtual.Application
+﻿namespace LojaVirtual.Application
 {
     public class Class1
     {

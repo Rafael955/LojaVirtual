@@ -22,7 +22,7 @@
                             <article class="card-body">
                                 @if (TempData["MsgSucesso"] != null)
                                 {
-                                    <p class="alert alert-success">@TempData["MsgSucesso"]</p>
+                                <p class="alert alert-success">@TempData["MsgSucesso"]</p>
                                 }
                                 <div class="form-row">
                                     <div class="col form-group">
@@ -31,7 +31,7 @@
                                         <span asp-validation-for="Nome"></span>
                                     </div>
                                     <div class="col form-group">
-                                        <label for="Nascimento" >Data de nascimento</label>
+                                        <label for="Nascimento">Data de nascimento</label>
                                         <input asp-for="Nascimento" type="date" id="Nascimento" class="form-control" placeholder="">
                                         <span asp-validation-for="Nascimento"></span>
                                     </div>
@@ -55,13 +55,13 @@
                                 <div class="form-group">
                                     <label for="Telefone">Telefone</label>
                                     <input asp-for="Telefone" type="tel" id="Telefone" class="form-control" placeholder="">
-                                   
+
                                     <span asp-validation-for="Telefone"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="Email">Email</label>
                                     <input asp-for="Email" type="email" id="Email" class="form-control" placeholder="">
-                                  
+
                                     <span asp-validation-for="Email"></span>
                                 </div>
                                 <div class="form-group">
@@ -75,11 +75,9 @@
                             </article>
                             <div class="border-top card-body text-center">Já possui uma conta? <a asp-action="Login" asp-controller="Home">Logar</a></div>
                         </div>
-
                     </div>
                 </aside>
             </div>
         </section>
     </main>
 </form>
-
