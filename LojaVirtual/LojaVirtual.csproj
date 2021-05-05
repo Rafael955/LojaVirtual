@@ -20,8 +20,4 @@
     <ProjectReference Include="..\LojaVirtual.Infrastructure\LojaVirtual.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Configuration\" />
-  </ItemGroup>
-
 </Project>

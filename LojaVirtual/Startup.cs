@@ -1,3 +1,4 @@
+using LojaVirtual.Configuration;
 using LojaVirtual.Domain.Configs;
 using LojaVirtual.Domain.Interfaces.IRepositories;
 using LojaVirtual.Domain.Libraries;
@@ -36,19 +37,7 @@ namespace LojaVirtual
             services.AddMemoryCache(); // Guardar os dados na memória
             services.AddSession();
 
-            services.AddDbContext<LojaVirtualContext>(option =>
-            {
-                option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
-
-            services.Configure<Configuracoes>(Configuration.GetSection("ConfiguracoesGerais"));
-
-            services.AddHttpContextAccessor();
-            services.AddScoped<INewsletterEmailRepository, NewsletterEmailRepository>();
-            services.AddScoped<IClienteRepository, ClienteRepository>();
-
-            services.AddScoped<Sessao>();
-            services.AddScoped<LoginCliente>();
+            services.ConfigureDependencies(Configuration);
 
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();

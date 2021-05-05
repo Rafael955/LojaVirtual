@@ -4,14 +4,16 @@ using LojaVirtual.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace LojaVirtual.Infrastructure.Data.Migrations
+namespace LojaVirtual.Infrastructure.Migrations
 {
     [DbContext(typeof(LojaVirtualContext))]
-    partial class LojaVirtualContextModelSnapshot : ModelSnapshot
+    [Migration("20210505132732_Colaboradores")]
+    partial class Colaboradores
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,10 +61,9 @@ namespace LojaVirtual.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("LojaVirtual.Domain.Models.Colaborador", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
