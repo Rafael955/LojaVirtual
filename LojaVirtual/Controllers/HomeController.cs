@@ -125,25 +125,10 @@ namespace LojaVirtual.Controllers
         }
 
         [HttpGet]
+        [ClienteAutorizacao]
         public async Task<IActionResult> Painel()
         {
-            //byte[] UsuarioId;
-            Cliente cliente = _loginCliente.ObterCliente();
-            //if (HttpContext.Session.TryGetValue("Id", out UsuarioId))
-            if (cliente != null)
-            {
-                return await Task.FromResult(new ContentResult()
-                {
-                    Content =
-                    "Usuário " + cliente.Nome + ", " +
-                    "Id: " + cliente.Id + ", " +
-                    "Email: " + cliente.Email + ", " +
-                    "Idade: " + (DateTime.Now.Year - cliente.Nascimento.Year) + ". " +
-                    "LOGADO!"
-                });
-            }
-
-            return await Task.FromResult(new ContentResult { Content = "Acesso Negado!" });
+            return new ContentResult() { Content = "Este é o Painel do Cliente." };
         }
 
         [HttpGet]
