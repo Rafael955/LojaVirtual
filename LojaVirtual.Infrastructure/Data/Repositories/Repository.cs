@@ -40,6 +40,11 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             return await _context.Set<T>().FindAsync(id);
         }
 
+        public virtual async Task<IReadOnlyCollection<T>> Encontrar(Expression<Func<T, bool>> predicate)
+        {
+            return await _context.Set<T>().Where(predicate).ToListAsync();
+        }
+
         public virtual async Task Remover(Guid id)
         {
             _context.Remove(id);
@@ -49,11 +54,6 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
         public virtual async Task Salvar()
         {
             await _context.SaveChangesAsync();
-        }
-
-        public virtual async Task<IReadOnlyCollection<T>> Encontrar(Expression<Func<T, bool>> predicate)
-        {
-            return await _context.Set<T>().Where(predicate).ToListAsync();
         }
     }
 }

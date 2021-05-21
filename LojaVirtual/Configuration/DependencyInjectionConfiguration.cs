@@ -25,6 +25,7 @@ namespace LojaVirtual.Configuration
             services.Configure<Configuracoes>(configuration.GetSection("ConfiguracoesGerais"));
 
             services.AddHttpContextAccessor();
+
             services.AddScoped<INewsletterEmailRepository, NewsletterEmailRepository>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IColaboradorRepository, ColaboradorRepository>();
