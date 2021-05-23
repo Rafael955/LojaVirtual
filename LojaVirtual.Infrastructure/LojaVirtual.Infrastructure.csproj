@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20210505131843_CorrecaoColaboradores.Designer.cs" />
     <Compile Remove="Migrations\20210505132541_Colaboradores.cs" />
     <Compile Remove="Migrations\20210505132541_Colaboradores.Designer.cs" />
+    <Compile Remove="Migrations\20210523131052_ModificacaoTabelasChavePrimaria.cs" />
+    <Compile Remove="Migrations\20210523131052_ModificacaoTabelasChavePrimaria.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

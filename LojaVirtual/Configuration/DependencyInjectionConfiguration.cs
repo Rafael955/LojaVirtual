@@ -32,6 +32,7 @@ namespace LojaVirtual.Configuration
 
             services.AddScoped<Sessao>();
             services.AddScoped<LoginCliente>();
+            services.AddScoped<LoginColaborador>();
         }
     }
 }

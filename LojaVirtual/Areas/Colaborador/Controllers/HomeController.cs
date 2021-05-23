@@ -1,15 +1,49 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LojaVirtual.Domain.Interfaces.IRepositories;
+using LojaVirtual.Domain.Libraries;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using _Colaborador = LojaVirtual.Domain.Models.Colaborador;
 
 namespace LojaVirtual.Areas.Colaborador.Controllers
 {
     [Area("Colaborador")]
     public class HomeController : Controller
     {
+        private IColaboradorRepository _colaboradorRepo;
+        private LoginColaborador _loginColaborador;
+
+        public HomeController(IColaboradorRepository colaboradorRepo, LoginColaborador loginColaborador)
+        {
+            _colaboradorRepo = colaboradorRepo;
+            _loginColaborador = loginColaborador;
+        }
+
+        [HttpGet]
         public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login([FromForm] _Colaborador colaborador)
+        {
+            _Colaborador colaboradorDb = await _colaboradorRepo.Login(colaborador.Email, colaborador.Senha);
+
+            if (colaboradorDb != null)
+            {
+                _loginColaborador.Login(colaboradorDb);
+
+                return new RedirectResult(Url.Action(nameof(Painel)));
+            }
+
+            TempData["MsgErro"] = "Usuário não encontrado, por favor verifique o e-mail e senha digitados!";
+            return View();
+        }
+
+        public IActionResult Painel()
         {
             return View();
         }

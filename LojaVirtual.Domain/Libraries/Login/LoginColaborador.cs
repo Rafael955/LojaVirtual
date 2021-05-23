@@ -15,7 +15,7 @@ namespace LojaVirtual.Domain.Libraries
 
         public void Login(Colaborador colaborador)
         {
-            //Serializar cliente
+            //Serializar colaborador
             var colaboradorJson = JsonConvert.SerializeObject(colaborador);
             sessao.Cadastrar(Key, colaboradorJson);
         }

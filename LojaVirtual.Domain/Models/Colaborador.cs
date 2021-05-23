@@ -10,18 +10,16 @@ namespace LojaVirtual.Domain.Models
         public string Email { get; set; }
         public string Senha { get; set; }
 
+        private string _tipo;
+
         public string Tipo
         {
-            get { return Tipo; }
+            get { return _tipo; }
             set
             {
-                if (value.Equals(TipoColaborador.COMUM) && value.Equals(TipoColaborador.GERENTE))
+                if (value.Equals(TipoColaborador.COMUM) || value.Equals(TipoColaborador.GERENTE))
                 {
-                    Tipo = value;
-                }
-                else
-                {
-                    throw new Exception("TipoColaborador Inválido!");
+                    _tipo = value;
                 }
             }
         }
