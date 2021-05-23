@@ -43,6 +43,15 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             return View();
         }
 
+        [ColaboradorAutorizacao]
+        public IActionResult Logout()
+        {
+            _loginColaborador.Logout();
+            return RedirectToAction(nameof(Login));
+        }
+
+        [HttpGet]
+        [ColaboradorAutorizacao]
         public IActionResult Painel()
         {
             return View();
