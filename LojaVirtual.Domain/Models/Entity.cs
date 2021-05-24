@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace LojaVirtual.Domain.Models
 {
@@ -11,5 +10,7 @@ namespace LojaVirtual.Domain.Models
         }
 
         public Guid Id { get; set; }
+
+        public DateTime DataCadastro { get; set; } = DateTime.Now;
     }
 }

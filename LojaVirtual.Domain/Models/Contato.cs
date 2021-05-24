@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Domain.Libraries;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace LojaVirtual.Domain.Models

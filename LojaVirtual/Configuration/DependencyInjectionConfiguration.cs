@@ -26,9 +26,10 @@ namespace LojaVirtual.Configuration
 
             services.AddHttpContextAccessor();
 
-            services.AddScoped<INewsletterEmailRepository, NewsletterEmailRepository>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<INewsletterEmailRepository, NewsletterEmailRepository>();
             services.AddScoped<IColaboradorRepository, ColaboradorRepository>();
+            services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 
             services.AddScoped<Sessao>();
             services.AddScoped<LoginCliente>();

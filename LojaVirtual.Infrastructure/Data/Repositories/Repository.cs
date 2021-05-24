@@ -47,7 +47,8 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
 
         public virtual async Task Remover(Guid id)
         {
-            _context.Remove(id);
+            Task<T> entity = ObterPorId(id);
+            _context.Remove(entity);
             await Salvar();
         }
 

@@ -14,5 +14,7 @@ namespace LojaVirtual.Infrastructure.Data.Context
         public DbSet<NewsletterEmail> NewsletterEmails { get; set; }
 
         public DbSet<Colaborador> Colaboradores { get; set; }
+
+        public DbSet<Categoria> Categorias { get; set; }
     }
 }

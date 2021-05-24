@@ -1,4 +1,6 @@
-﻿namespace LojaVirtual.Domain.Models
+﻿using System;
+
+namespace LojaVirtual.Domain.Models
 {
     public class Produto : Entity
     {
