@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace LojaVirtual.Domain.Interfaces.IRepositories
 {
@@ -16,8 +17,10 @@ namespace LojaVirtual.Domain.Interfaces.IRepositories
 
         Task<T> ObterPorId(Guid id);
 
-        Task<IReadOnlyCollection<T>> ObterTodos();
+        Task<IEnumerable<T>> ObterTodos();
 
-        Task<IReadOnlyCollection<T>> Encontrar(Expression<Func<T, bool>> predicate);
+        Task<IPagedList<T>> ObterTodosPaginado(int? pagina);
+
+        Task<IEnumerable<T>> Encontrar(Expression<Func<T, bool>> predicate);
     }
 }

@@ -6,11 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace LojaVirtual.Infrastructure.Data.Repositories
 {
     public abstract class Repository<T> : IRepository<T> where T : Entity
     {
+        protected const int _registrosPorPagina = 25;
         protected readonly DbContext _context;
 
         protected Repository(DbContext context)
@@ -30,7 +32,13 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             await Salvar();
         }
 
-        public virtual async Task<IReadOnlyCollection<T>> ObterTodos()
+        public virtual async Task<IPagedList<T>> ObterTodosPaginado(int? pagina)
+        {
+            var NumeroDaPagina = pagina ?? 0;
+            return await _context.Set<T>().ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);
+        }
+
+        public virtual async Task<IEnumerable<T>> ObterTodos()
         {
             return await _context.Set<T>().ToListAsync();
         }
@@ -40,7 +48,7 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public virtual async Task<IReadOnlyCollection<T>> Encontrar(Expression<Func<T, bool>> predicate)
+        public virtual async Task<IEnumerable<T>> Encontrar(Expression<Func<T, bool>> predicate)
         {
             return await _context.Set<T>().Where(predicate).ToListAsync();
         }

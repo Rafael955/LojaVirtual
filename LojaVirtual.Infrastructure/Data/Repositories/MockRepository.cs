@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace LojaVirtual.Infrastructure.Data.Repositories
 {
@@ -18,13 +19,33 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             _lista = new List<T>();
         }
 
-        public abstract Task Adicionar(T entity);
+        public virtual async Task Adicionar(T entity)
+        {
+            await Task.Run(() =>
+            {
+                _lista.Add(entity);
+            });
+        }
 
-        public abstract Task Atualizar(T entity);
+        public virtual async Task Atualizar(T entity)
+        {
+            await Task.Run(() =>
+            {
+                _lista.Remove(entity);
+                _lista.Add(entity);
+            });
+        }
 
-        public abstract Task Remover(Guid id);
+        public virtual async Task Remover(Guid id)
+        {
+            await Task.Run(() =>
+            {
+                var entity = ObterPorId(id) as T;
+                _lista.Remove(entity);
+            });
+        }
 
-        public virtual async Task<IReadOnlyCollection<T>> ObterTodos()
+        public virtual async Task<IEnumerable<T>> ObterTodos()
         {
             return await _lista.AsQueryable().ToListAsync();
         }
@@ -34,9 +55,14 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             return await _lista.AsQueryable().Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        public virtual async Task<IReadOnlyCollection<T>> Encontrar(Expression<Func<T, bool>> predicate)
+        public virtual async Task<IEnumerable<T>> Encontrar(Expression<Func<T, bool>> predicate)
         {
             return await _lista.AsQueryable().Where(predicate).ToListAsync();
+        }
+
+        public Task<IPagedList<T>> ObterTodosPaginado(int? pagina)
+        {
+            throw new NotImplementedException();
         }
     }
 }

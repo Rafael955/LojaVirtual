@@ -2,6 +2,8 @@
 using LojaVirtual.Domain.Models;
 using LojaVirtual.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using X.PagedList;
 
 namespace LojaVirtual.Infrastructure.Data.Repositories
 {
