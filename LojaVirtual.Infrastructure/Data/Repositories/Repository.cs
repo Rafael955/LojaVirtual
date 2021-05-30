@@ -34,7 +34,7 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
 
         public virtual async Task<IPagedList<T>> ObterTodosPaginado(int? pagina)
         {
-            var NumeroDaPagina = pagina ?? 0;
+            var NumeroDaPagina = pagina ?? 1;
             return await _context.Set<T>().ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);
         }
 

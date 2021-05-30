@@ -14,7 +14,7 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             get { return _context as LojaVirtualContext; }
         }
 
-        public CategoriaRepository(DbContext context) : base(context)
+        public CategoriaRepository(LojaVirtualContext context) : base(context)
         {
         }
     }
