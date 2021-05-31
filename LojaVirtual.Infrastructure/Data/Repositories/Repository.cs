@@ -12,7 +12,7 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
 {
     public abstract class Repository<T> : IRepository<T> where T : Entity
     {
-        protected const int _registrosPorPagina = 25;
+        protected const int _registrosPorPagina = 10;
         protected readonly DbContext _context;
 
         protected Repository(DbContext context)

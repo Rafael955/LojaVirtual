@@ -3,12 +3,54 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-@foreach (Categoria categoria in Model)
+<h1>Categorias</h1>
+<br />
+<a asp-action="Cadastrar" class="btn btn-primary">Cadastrar</a>
+<br />
+<br />
+@if (Model.Any())
 {
-    @categoria.Nome
-    <br />
-}
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Nome da categoria</th>
+                    <th scope="col">Categoria Pai</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Categoria categoria in Model)
+                {
+                    <tr>
+                        <th scope="row">@categoria.Id</th>
+                        <td>@categoria.Nome</td>
+                        <td>
+                            @if (categoria.CategoriaPai == null)
+                            {
+                                <span>---</span>
+                            }
+                            else
+                            {
+                                <span>@categoria.CategoriaPai.Nome</span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Atualizar" class="btn btn-secondary">Atualizar</a>
+                            <a asp-action="Excluir" class="btn btn-danger">Excluir</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
-@Html.PagedListPager((IPagedList)Model, pagina => Url.Action("Index", new { pagina })) <!-- Este trecho de código exibe os números das páginas-->
+    @Html.PagedListPager((IPagedList)Model, pagina => Url.Action("Index", new { pagina })) <!-- Este trecho de código exibe os números das páginas-->
+}
+else
+{
+    <div class="alert alert-warning">
+        <center>Nenhuma categoria cadastrada</center>
+    </div>
+}
