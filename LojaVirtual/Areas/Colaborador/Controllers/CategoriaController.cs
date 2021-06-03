@@ -29,15 +29,24 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpGet]
-        public IActionResult Cadastrar()
+        public async Task<IActionResult> Cadastrar()
         {
+            ViewBag.Categorias = await GetCategorias();
             return View();
         }
 
         [HttpPost]
-        public IActionResult Cadastrar([FromForm] Categoria categoria)
+        public async Task<IActionResult> Cadastrar([FromForm] Categoria categoria)
         {
-            //TODO - Implementar
+            if (ModelState.IsValid)
+            {
+                await _categoriaRepository.Adicionar(categoria);
+
+                TempData["MsgSucesso"] = $"Categoria {categoria.Nome} cadastrada com sucesso!";
+
+                return RedirectToAction(nameof(Index));
+            }
+
             return View();
         }
 
@@ -57,6 +66,11 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         public IActionResult Excluir(Guid id)
         {
             return View();
+        }
+
+        private async Task<IEnumerable<Categoria>> GetCategorias()
+        {
+            return await _categoriaRepository.ObterTodos();
         }
     }
 }

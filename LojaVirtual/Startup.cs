@@ -33,7 +33,7 @@ namespace LojaVirtual
 
             services.Configure<CookiePolicyOptions>(options =>
             {
-                options.CheckConsentNeeded = context => true;
+                options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
@@ -43,10 +43,10 @@ namespace LojaVirtual
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
 
-            //services.AddMvc(options =>
-            //{
-            //    options.EnableEndpointRouting = false;
-            //});
+            services.AddSession(options =>
+            {
+                options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

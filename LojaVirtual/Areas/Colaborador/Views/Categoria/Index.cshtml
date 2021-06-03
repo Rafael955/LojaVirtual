@@ -2,12 +2,20 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+<br />
+<br />
 <h1>Categorias</h1>
 <br />
 <a asp-action="Cadastrar" class="btn btn-primary">Cadastrar</a>
 <br />
 <br />
+@if (TempData["MsgSucesso"] != null)
+{
+    <p class="alert alert-success">
+        @TempData["MsgSucesso"]
+    </p>
+}
+
 @if (Model.Any())
 {
     <div class="table-responsive">
@@ -27,14 +35,9 @@
                         <th scope="row">@categoria.Id</th>
                         <td>@categoria.Nome</td>
                         <td>
-                            @if (categoria.CategoriaPai == null)
-                            {
-                                <span>---</span>
-                            }
-                            else
-                            {
-                                <span>@categoria.CategoriaPai.Id - @categoria.CategoriaPai.Nome</span>
-                            }
+                            @Html.DisplayFor(model => categoria.CategoriaPai.Id)
+                            -
+                            @Html.DisplayFor(model => categoria.CategoriaPai.Nome)
                         </td>
                         <td>
                             <a asp-action="Atualizar" class="btn btn-secondary">Atualizar</a>
@@ -53,4 +56,14 @@ else
     <div class="alert alert-warning">
         <center>Nenhuma categoria cadastrada</center>
     </div>
+}
+@{
+    @*@if (categoria.CategoriaPai == null)
+        {
+            <span>---</span>
+        }
+        else
+        {
+            <span>@categoria.CategoriaPai.Id - @categoria.CategoriaPai.Nome</span>
+        }*@
 }

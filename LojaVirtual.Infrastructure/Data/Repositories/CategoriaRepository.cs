@@ -22,7 +22,7 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
         public override async Task<IPagedList<Categoria>> ObterTodosPaginado(int? pagina)
         {
             var NumeroDaPagina = pagina ?? 1;
-            return await _lojaContext.Categorias.Include(x => x.CategoriaPai).OrderBy(x => x.Nome).ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);
+            return await _lojaContext.Categorias.Include(x => x.CategoriaPai).ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);
         }
     }
 }

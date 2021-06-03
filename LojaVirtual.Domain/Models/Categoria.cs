@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LojaVirtual.Domain.Libraries;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,6 +9,9 @@ namespace LojaVirtual.Domain.Models
 {
     public class Categoria : Entity<int>
     {
+        [Required(ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro001")]
+        [MinLength(4, ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro002")]
+        //TODO - Criar validação de nome único de categoria no banco de dados.
         public string Nome { get; set; }
 
         /**
@@ -16,6 +20,9 @@ namespace LojaVirtual.Domain.Models
          * URL normal: www.lojavirtual.com.br/categoria/5
          * URL amigável(com slug): www.lojavirutal.com.br/categoria/informatica (Url amigável)
          */
+
+        [Required(ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro001")]
+        [MinLength(4, ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro002")]
         public string Slug { get; set; }
 
         /**
