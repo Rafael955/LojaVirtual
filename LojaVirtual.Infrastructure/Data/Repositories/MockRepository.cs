@@ -10,7 +10,9 @@ using X.PagedList;
 
 namespace LojaVirtual.Infrastructure.Data.Repositories
 {
-    public abstract class MockRepository<T> : IRepository<T> where T : Entity
+    public abstract class MockRepository<T, U> : IRepository<T, U>
+        where U : struct
+        where T : Entity<U>
     {
         protected IList<T> _lista;
 
@@ -36,7 +38,7 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             });
         }
 
-        public virtual async Task Remover(Guid id)
+        public virtual async Task Remover(U id)
         {
             await Task.Run(() =>
             {
@@ -50,9 +52,10 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             return await _lista.AsQueryable().ToListAsync();
         }
 
-        public virtual async Task<T> ObterPorId(Guid id)
+        public virtual async Task<T> ObterPorId(U id)
         {
-            return await _lista.AsQueryable().Where(x => x.Id == id).FirstOrDefaultAsync();
+            throw new NotImplementedException();
+            //return await _lista.AsQueryable().Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
         public virtual async Task<IEnumerable<T>> Encontrar(Expression<Func<T, bool>> predicate)

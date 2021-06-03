@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace LojaVirtual.Domain.Models
 {
-    public class Categoria : Entity
+    public class Categoria : Entity<int>
     {
         public string Nome { get; set; }
 
@@ -25,7 +26,7 @@ namespace LojaVirtual.Domain.Models
          * -- Mouse Gamer
          */
 
-        public Guid? CategoriaPaiId { get; set; }
+        public int? CategoriaPaiId { get; set; }
 
         /*
          * ORM - EntityFrameworkCore

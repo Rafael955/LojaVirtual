@@ -4,7 +4,7 @@ using X.PagedList;
 
 namespace LojaVirtual.Domain.Interfaces.IRepositories
 {
-    public interface ICategoriaRepository : IRepository<Categoria>
+    public interface ICategoriaRepository : IRepository<Categoria, int>
     {
     }
 }

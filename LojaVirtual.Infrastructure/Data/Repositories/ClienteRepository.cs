@@ -2,12 +2,13 @@
 using LojaVirtual.Domain.Models;
 using LojaVirtual.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace LojaVirtual.Infrastructure.Data.Repositories
 {
-    public class ClienteRepository : Repository<Cliente>, IClienteRepository
+    public class ClienteRepository : Repository<Cliente, Guid>, IClienteRepository
     {
         public LojaVirtualContext _lojaContext
         {

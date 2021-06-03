@@ -2,7 +2,7 @@
 
 namespace LojaVirtual.Domain.Models
 {
-    public class Produto : Entity
+    public class Produto : Entity<int>
     {
         public string Nome { get; set; }
 

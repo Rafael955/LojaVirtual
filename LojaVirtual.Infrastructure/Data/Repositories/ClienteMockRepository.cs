@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Infrastructure.Data.Repositories
 {
-    public class ClienteMockRepository : MockRepository<Cliente>, IClienteRepository
+    public class ClienteMockRepository : MockRepository<Cliente, Guid>, IClienteRepository
     {
         public override async Task Adicionar(Cliente entity)
         {

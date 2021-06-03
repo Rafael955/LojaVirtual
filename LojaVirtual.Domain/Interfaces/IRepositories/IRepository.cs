@@ -7,15 +7,17 @@ using X.PagedList;
 
 namespace LojaVirtual.Domain.Interfaces.IRepositories
 {
-    public interface IRepository<T> where T : Entity
+    public interface IRepository<T, U>
+        where U : struct
+        where T : Entity<U>
     {
         Task Adicionar(T entity);
 
         Task Atualizar(T entity);
 
-        Task Remover(Guid id);
+        Task Remover(U id);
 
-        Task<T> ObterPorId(Guid id);
+        Task<T> ObterPorId(U id);
 
         Task<IEnumerable<T>> ObterTodos();
 

@@ -8,7 +8,7 @@ using X.PagedList;
 
 namespace LojaVirtual.Infrastructure.Data.Repositories
 {
-    public class CategoriaRepository : Repository<Categoria>, ICategoriaRepository
+    public class CategoriaRepository : Repository<Categoria, int>, ICategoriaRepository
     {
         public LojaVirtualContext _lojaContext
         {

@@ -10,7 +10,9 @@ using X.PagedList;
 
 namespace LojaVirtual.Infrastructure.Data.Repositories
 {
-    public abstract class Repository<T> : IRepository<T> where T : Entity
+    public abstract class Repository<T, U> : IRepository<T, U>
+        where U : struct
+        where T : Entity<U>
     {
         protected const int _registrosPorPagina = 10;
         protected readonly DbContext _context;
@@ -43,7 +45,7 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             return await _context.Set<T>().ToListAsync();
         }
 
-        public virtual async Task<T> ObterPorId(Guid id)
+        public virtual async Task<T> ObterPorId(U id)
         {
             return await _context.Set<T>().FindAsync(id);
         }
@@ -53,7 +55,7 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             return await _context.Set<T>().Where(predicate).ToListAsync();
         }
 
-        public virtual async Task Remover(Guid id)
+        public virtual async Task Remover(U id)
         {
             Task<T> entity = ObterPorId(id);
             _context.Remove(entity);

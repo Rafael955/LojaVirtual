@@ -4,8 +4,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LojaVirtual.Domain.Models
 {
-    public class Contato : Entity
+    public class Contato : Entity<Guid>
     {
+        public Contato()
+        {
+            Id = Guid.NewGuid();
+        }
+
         [Required(ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro001")]
         [MinLength(4, ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro002")]
         public string Nome { get; set; }

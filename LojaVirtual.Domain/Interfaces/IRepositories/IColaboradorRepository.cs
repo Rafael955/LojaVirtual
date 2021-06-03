@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Domain.Interfaces.IRepositories
 {
-    public interface IColaboradorRepository : IRepository<Colaborador>
+    public interface IColaboradorRepository : IRepository<Colaborador, Guid>
     {
         Task<Colaborador> Login(string email, string senha);
     }

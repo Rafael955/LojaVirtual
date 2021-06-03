@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace LojaVirtual.Domain.Models
 {
-    public class Colaborador : Entity
+    public class Colaborador : Entity<Guid>
     {
+        public Colaborador()
+        {
+            Id = Guid.NewGuid();
+        }
+
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }

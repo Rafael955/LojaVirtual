@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Infrastructure.Data.Repositories
 {
-    public class ColaboradorRepository : Repository<Colaborador>, IColaboradorRepository
+    public class ColaboradorRepository : Repository<Colaborador, Guid>, IColaboradorRepository
     {
         public LojaVirtualContext _lojaContext
         {
