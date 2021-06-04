@@ -2,6 +2,7 @@
 using LojaVirtual.Domain.Libraries;
 using LojaVirtual.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,18 +48,32 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            ViewBag.Categorias = await GetCategorias();
             return View();
         }
 
-        [HttpGet]
-        public IActionResult Atualizar()
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> Atualizar(int id)
         {
-            return View();
+            var categoria = await _categoriaRepository.ObterPorId(id);
+            ViewBag.Categorias = await GetCategorias();
+
+            return View(categoria);
         }
 
         [HttpPost]
-        public IActionResult Atualizar([FromForm] Categoria categoria)
+        public async Task<IActionResult> Atualizar([FromForm] Categoria categoria)
         {
+            if (ModelState.IsValid)
+            {
+                await _categoriaRepository.Atualizar(categoria);
+
+                TempData["MsgSucesso"] = $"Categoria atualizada com sucesso!";
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            ViewBag.Categorias = await GetCategorias();
             return View();
         }
 
@@ -68,9 +83,10 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             return View();
         }
 
-        private async Task<IEnumerable<Categoria>> GetCategorias()
+        private async Task<IEnumerable<SelectListItem>> GetCategorias()
         {
-            return await _categoriaRepository.ObterTodos();
+            var categorias = await _categoriaRepository.ObterTodos();
+            return categorias.Select(x => new SelectListItem(x.Nome, x.Id.ToString()));
         }
     }
 }
