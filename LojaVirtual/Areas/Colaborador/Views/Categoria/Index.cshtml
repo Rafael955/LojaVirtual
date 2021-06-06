@@ -3,12 +3,10 @@
     ViewData["Title"] = "Index";
 }
 <br />
-<br />
 <h1>Categorias</h1>
-<br />
-<a asp-action="Cadastrar" class="btn btn-primary">Cadastrar</a>
-<br />
-<br />
+<hr style="background:black" />
+<a asp-action="Cadastrar" class="btn btn-primary" style="margin:15px 0px">Cadastrar</a>
+
 @if (TempData["MsgSucesso"] != null)
 {
     <p class="alert alert-success">

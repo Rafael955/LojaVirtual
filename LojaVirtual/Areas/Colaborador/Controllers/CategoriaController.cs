@@ -56,13 +56,13 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         public async Task<IActionResult> Atualizar(int id)
         {
             var categoria = await _categoriaRepository.ObterPorId(id);
-            ViewBag.Categorias = await GetCategorias();
+            ViewBag.Categorias = await GetCategorias(id);
 
             return View(categoria);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Atualizar([FromForm] Categoria categoria)
+        [HttpPost("{id:int}")]
+        public async Task<IActionResult> Atualizar([FromForm] Categoria categoria, int id)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +73,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewBag.Categorias = await GetCategorias();
+            ViewBag.Categorias = await GetCategorias(id);
             return View();
         }
 
@@ -83,10 +83,14 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             return View();
         }
 
-        private async Task<IEnumerable<SelectListItem>> GetCategorias()
+        private async Task<IEnumerable<SelectListItem>> GetCategorias(int id = 0)
         {
             var categorias = await _categoriaRepository.ObterTodos();
-            return categorias.Select(x => new SelectListItem(x.Nome, x.Id.ToString()));
+
+            if (id != 0)
+                return categorias.Where(x => x.Id != id).Select(x => new SelectListItem(x.Nome, x.Id.ToString()));
+            else
+                return categorias.Select(x => new SelectListItem(x.Nome, x.Id.ToString()));
         }
     }
 }

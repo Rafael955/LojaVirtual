@@ -1,6 +1,7 @@
 ﻿@model Categoria
 
 <form method="post">
+    <input type="hidden" asp-for="Id" />
     <div class="form-group">
         <label asp-for="Nome">Nome</label>
         <input asp-for="Nome" class="form-control" placeholder="Digite o nome da categoria">
@@ -26,6 +27,6 @@
         <span asp-validation-for="CategoriaPaiId" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <button type="submit" class="btn btn-primary">@(Model != null ? "Atualizar" : "Cadastrar")</button>
     <a asp-action="Index" class="btn btn-outline-dark"><< Voltar para lista de categorias</a>
 </form>
