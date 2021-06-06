@@ -27,6 +27,6 @@
         <span asp-validation-for="CategoriaPaiId" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">@(Model != null ? "Atualizar" : "Cadastrar")</button>
-    <a asp-action="Index" class="btn btn-outline-dark"><< Voltar para lista de categorias</a>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> @(Model != null ? "Atualizar" : "Cadastrar")</button>
+    <a asp-action="Index" class="btn btn-outline-dark"><i class="fas fa-angle-double-left"></i> Voltar para lista de categorias</a>
 </form>

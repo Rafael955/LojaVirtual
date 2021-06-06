@@ -4,8 +4,8 @@
 }
 <br />
 <h1>Categorias</h1>
-<hr style="background:black" />
-<a asp-action="Cadastrar" class="btn btn-primary" style="margin:15px 0px">Cadastrar</a>
+<hr />
+<a asp-action="Cadastrar" class="btn btn-primary" style="margin:15px 0px"><i class="fas fa-plus-circle"></i> Cadastrar</a>
 
 @if (TempData["MsgSucesso"] != null)
 {
@@ -38,8 +38,8 @@
                             @Html.DisplayFor(model => categoria.CategoriaPai.Nome)
                         </td>
                         <td>
-                            <a asp-action="Atualizar" asp-route-id="@categoria.Id" class="btn btn-secondary">Atualizar</a>
-                            <a asp-action="Excluir" class="btn btn-danger">Excluir</a>
+                            <a asp-action="Atualizar" asp-route-id="@categoria.Id" class="btn btn-secondary"><i class="fas fa-pen"></i> Atualizar</a>
+                            <a asp-action="Excluir" class="btn btn-danger"><i class="fas fa-trash"></i> Excluir</a>
                         </td>
                     </tr>
                 }
