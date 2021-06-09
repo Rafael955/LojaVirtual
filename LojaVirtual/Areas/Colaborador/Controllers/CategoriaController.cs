@@ -11,9 +11,10 @@ using X.PagedList;
 
 namespace LojaVirtual.Areas.Colaborador.Controllers
 {
-    [Area("Colaborador")]
     //TODO - Habilitar verificação de Login
     //[ColaboradorAutorizacao]
+    [Area("Colaborador")]
+    [Route("[area]/[controller]")]
     public class CategoriaController : Controller
     {
         private ICategoriaRepository _categoriaRepository;
@@ -23,20 +24,21 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             _categoriaRepository = categoriaRepository;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index(int? pagina)
         {
             var categorias = await _categoriaRepository.ObterTodosPaginado(pagina);
             return View(categorias);
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public async Task<IActionResult> Cadastrar()
         {
             ViewBag.Categorias = await GetCategorias();
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("[action]")]
         public async Task<IActionResult> Cadastrar([FromForm] Categoria categoria)
         {
             if (ModelState.IsValid)
@@ -52,7 +54,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             return View();
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("[action]/{id:int}")]
         public async Task<IActionResult> Atualizar(int id)
         {
             var categoria = await _categoriaRepository.ObterPorId(id);
@@ -61,7 +63,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             return View(categoria);
         }
 
-        [HttpPost("{id:int}")]
+        [HttpPost("[action]/{id:int}")]
         public async Task<IActionResult> Atualizar([FromForm] Categoria categoria, int id)
         {
             if (ModelState.IsValid)
@@ -77,10 +79,14 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             return View();
         }
 
-        [HttpGet("{id:guid}")]
-        public IActionResult Excluir(Guid id)
+        [HttpGet("[action]/{id:int}")]
+        public async Task<IActionResult> Excluir(int id)
         {
-            return View();
+            //await _categoriaRepository.Remover(id);
+
+            //TempData["MsgSucesso"] = $"Categoria excluida com sucesso!";
+
+            return RedirectToAction(nameof(Index));
         }
 
         private async Task<IEnumerable<SelectListItem>> GetCategorias(int id = 0)
