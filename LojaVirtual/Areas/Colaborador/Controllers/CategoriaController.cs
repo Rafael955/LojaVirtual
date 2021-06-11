@@ -12,7 +12,7 @@ using X.PagedList;
 namespace LojaVirtual.Areas.Colaborador.Controllers
 {
     //TODO - Habilitar verificação de Login
-    //[ColaboradorAutorizacao]
+    [ColaboradorAutorizacao]
     [Area("Colaborador")]
     [Route("[area]/[controller]")]
     public class CategoriaController : Controller

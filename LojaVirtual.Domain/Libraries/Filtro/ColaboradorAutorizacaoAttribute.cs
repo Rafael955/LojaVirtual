@@ -17,7 +17,8 @@ namespace LojaVirtual.Domain.Libraries
 
             if (colaborador == null)
             {
-                context.Result = new ContentResult { Content = "Acesso Negado!" };
+                //context.Result = new ContentResult { Content = "Acesso Negado!" };
+                context.Result = new RedirectToActionResult("Login", "Home", null);
             }
         }
     }
