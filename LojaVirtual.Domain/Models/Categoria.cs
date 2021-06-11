@@ -9,6 +9,9 @@ namespace LojaVirtual.Domain.Models
 {
     public class Categoria : Entity<int>
     {
+        [Display(Name = "Código")]
+        public override int Id { get; set; }
+
         [Required(ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro001")]
         [MinLength(4, ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro002")]
         //TODO - Criar validação de nome único de categoria no banco de dados.
@@ -33,6 +36,7 @@ namespace LojaVirtual.Domain.Models
          * -- Mouse Gamer
          */
 
+        [Display(Name = "Categoria Pai")]  //Usar caso queira renderizar os nomes das labels no html sem definir entre as tags, sem o annotation Display o nome exibido seria CategoriaPaiId
         public int? CategoriaPaiId { get; set; }
 
         /*
