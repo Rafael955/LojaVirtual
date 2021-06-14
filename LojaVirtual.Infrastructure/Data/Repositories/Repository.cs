@@ -1,6 +1,7 @@
 ﻿using LojaVirtual.Domain.Interfaces.IRepositories;
 using LojaVirtual.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,13 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
         where U : struct
         where T : Entity<U>
     {
-        protected const int _registrosPorPagina = 10;
         protected readonly DbContext _context;
+        protected int _registrosPorPagina;
 
-        protected Repository(DbContext context)
+        protected Repository(DbContext context, IConfiguration configuration)
         {
             _context = context;
+            _registrosPorPagina = configuration.GetValue<int>("RegistrosPorPagina");
         }
 
         public virtual async Task Adicionar(T entity)

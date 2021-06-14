@@ -2,6 +2,7 @@
 using LojaVirtual.Domain.Models;
 using LojaVirtual.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             get { return _context as LojaVirtualContext; }
         }
 
-        public ClienteRepository(LojaVirtualContext context) : base(context)
+        public ClienteRepository(LojaVirtualContext context, IConfiguration configuration) : base(context, configuration)
         {
         }
 

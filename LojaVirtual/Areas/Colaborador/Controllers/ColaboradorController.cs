@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LojaVirtual.Domain.Interfaces.IRepositories;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,15 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
     [Route("[area]/[controller]")]
     public class ColaboradorController : Controller
     {
+        private readonly IColaboradorRepository _colaboradorRepository;
+
+        public ColaboradorController(IColaboradorRepository colaboradorRepository)
+        {
+            _colaboradorRepository = colaboradorRepository;
+        }
+
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? pagina)
         {
             return View();
         }

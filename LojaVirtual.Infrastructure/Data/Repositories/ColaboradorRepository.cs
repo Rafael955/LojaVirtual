@@ -2,12 +2,14 @@
 using LojaVirtual.Domain.Models;
 using LojaVirtual.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace LojaVirtual.Infrastructure.Data.Repositories
 {
@@ -18,13 +20,19 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             get { return _context as LojaVirtualContext; }
         }
 
-        public ColaboradorRepository(LojaVirtualContext context) : base(context)
+        public ColaboradorRepository(LojaVirtualContext context, IConfiguration configuration) : base(context, configuration)
         {
         }
 
         public async Task<Colaborador> Login(string email, string senha)
         {
             return await _lojaContext.Colaboradores.Where(x => x.Email == email && x.Senha == senha).FirstOrDefaultAsync();
+        }
+
+        public override async Task<IPagedList<Colaborador>> ObterTodosPaginado(int? pagina)
+        {
+            var NumeroDaPagina = pagina ?? 1;
+            return await _lojaContext.Colaboradores.ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
     [Route("[area]/[controller]")]
     public class CategoriaController : Controller
     {
-        private ICategoriaRepository _categoriaRepository;
+        private readonly ICategoriaRepository _categoriaRepository;
 
         public CategoriaController(ICategoriaRepository categoriaRepository)
         {
