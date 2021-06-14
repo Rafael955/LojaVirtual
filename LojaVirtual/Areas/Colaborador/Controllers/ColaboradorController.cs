@@ -22,16 +22,17 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(int? pagina)
         {
-            return View();
+            var colaboradores = await _colaboradorRepository.ObterTodosPaginado(pagina);
+            return View(colaboradores);
         }
 
-        [HttpGet]
+        [HttpGet("[action]")]
         public async Task<IActionResult> Cadastrar()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpGet("[action]")]
         public async Task<IActionResult> Cadastrar([FromForm] MeuColaborador colaborador)
         {
             return View();

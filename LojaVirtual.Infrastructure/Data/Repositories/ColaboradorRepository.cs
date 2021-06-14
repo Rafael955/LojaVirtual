@@ -29,10 +29,15 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             return await _lojaContext.Colaboradores.Where(x => x.Email == email && x.Senha == senha).FirstOrDefaultAsync();
         }
 
+        public override async Task<IEnumerable<Colaborador>> ObterTodos()
+        {
+            return await _lojaContext.Colaboradores.Where(a => a.Tipo != TipoColaborador.GERENTE).ToListAsync();
+        }
+
         public override async Task<IPagedList<Colaborador>> ObterTodosPaginado(int? pagina)
         {
             var NumeroDaPagina = pagina ?? 1;
-            return await _lojaContext.Colaboradores.ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);
+            return await _lojaContext.Colaboradores.Where(a => a.Tipo != TipoColaborador.GERENTE).ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);
         }
     }
 }
