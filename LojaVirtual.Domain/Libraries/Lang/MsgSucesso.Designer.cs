@@ -22,14 +22,14 @@ namespace LojaVirtual.Domain.Libraries.Lang {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MsgErro {
+    public class MsgSucesso {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MsgErro() {
+        internal MsgSucesso() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace LojaVirtual.Domain.Libraries.Lang {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LojaVirtual.Domain.Libraries.Lang.MsgErro", typeof(MsgErro).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LojaVirtual.Domain.Libraries.Lang.MsgSucesso", typeof(MsgSucesso).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,47 +61,56 @@ namespace LojaVirtual.Domain.Libraries.Lang {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo {0} é obrigatório!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Categoria salva com sucesso!.
         /// </summary>
-        public static string MsgErro001 {
+        public static string MsgCategoriaAddSucesso {
             get {
-                return ResourceManager.GetString("MsgErro001", resourceCulture);
+                return ResourceManager.GetString("MsgCategoriaAddSucesso", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo {0} deve ter no mínimo {1} caracteres!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Categoria alterada com sucesso!.
         /// </summary>
-        public static string MsgErro002 {
+        public static string MsgCategoriaAltSucesso {
             get {
-                return ResourceManager.GetString("MsgErro002", resourceCulture);
+                return ResourceManager.GetString("MsgCategoriaAltSucesso", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo {0} deve ter no máximo {1} caracteres!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Categoria excluida com sucesso!.
         /// </summary>
-        public static string MsgErro003 {
+        public static string MsgCategoriaDelSucesso {
             get {
-                return ResourceManager.GetString("MsgErro003", resourceCulture);
+                return ResourceManager.GetString("MsgCategoriaDelSucesso", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo {0} não é válido.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Colaborador salva com sucesso!.
         /// </summary>
-        public static string MsgErro004 {
+        public static string MsgColaboradorAddSucesso {
             get {
-                return ResourceManager.GetString("MsgErro004", resourceCulture);
+                return ResourceManager.GetString("MsgColaboradorAddSucesso", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O valor do campo {0} não confere com o valor do campo {1}.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Colaborador alterada com sucesso!.
         /// </summary>
-        public static string MsgErro005 {
+        public static string MsgColaboradorAltSucesso {
             get {
-                return ResourceManager.GetString("MsgErro005", resourceCulture);
+                return ResourceManager.GetString("MsgColaboradorAltSucesso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Colaborador excluida com sucesso!.
+        /// </summary>
+        public static string MsgColaboradorDelSucesso {
+            get {
+                return ResourceManager.GetString("MsgColaboradorDelSucesso", resourceCulture);
             }
         }
     }

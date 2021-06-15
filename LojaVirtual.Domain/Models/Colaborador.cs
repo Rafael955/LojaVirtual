@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Domain.Libraries;
+using LojaVirtual.Domain.Libraries.Lang;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -28,11 +29,14 @@ namespace LojaVirtual.Domain.Models
         public string Senha { get; set; }
 
         [NotMapped]
+        [Display(Name = "Confirmar Senha")]
+        [Compare("Senha", ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro001")]
         public string ConfirmaSenha { get; set; }
 
         private string _tipo;
 
-        [Required(ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro001")]
+        [Display(Name = "Tipo de Colaborador")]
+        [Required(ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro005")]
         public string Tipo
         {
             get { return _tipo; }

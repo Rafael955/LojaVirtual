@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Domain.Interfaces.IRepositories;
+using LojaVirtual.Domain.Libraries.Lang;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -32,9 +33,18 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             return View();
         }
 
-        [HttpGet("[action]")]
+        [HttpPost("[action]")]
         public async Task<IActionResult> Cadastrar([FromForm] MeuColaborador colaborador)
         {
+            if (ModelState.IsValid)
+            {
+                await _colaboradorRepository.Adicionar(colaborador);
+
+                TempData["MsgSucesso"] = MsgSucesso.MsgColaboradorAddSucesso;
+
+                return RedirectToAction(nameof(Index));
+            }
+
             return View();
         }
 

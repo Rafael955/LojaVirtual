@@ -1,5 +1,6 @@
 ﻿using LojaVirtual.Domain.Interfaces.IRepositories;
 using LojaVirtual.Domain.Libraries;
+using LojaVirtual.Domain.Libraries.Lang;
 using LojaVirtual.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -45,7 +46,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             {
                 await _categoriaRepository.Adicionar(categoria);
 
-                TempData["MsgSucesso"] = $"Categoria {categoria.Nome} cadastrada com sucesso!";
+                TempData["MsgSucesso"] = MsgSucesso.MsgCategoriaAddSucesso;
 
                 return RedirectToAction(nameof(Index));
             }
@@ -70,7 +71,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             {
                 await _categoriaRepository.Atualizar(categoria);
 
-                TempData["MsgSucesso"] = $"Categoria atualizada com sucesso!";
+                TempData["MsgSucesso"] = MsgSucesso.MsgCategoriaAltSucesso;
 
                 return RedirectToAction(nameof(Index));
             }
@@ -82,9 +83,9 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         [HttpGet("[action]/{id:int}")]
         public async Task<IActionResult> Excluir(int id)
         {
-            //await _categoriaRepository.Remover(id);
+            await _categoriaRepository.Remover(id);
 
-            //TempData["MsgSucesso"] = $"Categoria excluida com sucesso!";
+            TempData["MsgSucesso"] = MsgSucesso.MsgCategoriaDelSucesso;
 
             return RedirectToAction(nameof(Index));
         }

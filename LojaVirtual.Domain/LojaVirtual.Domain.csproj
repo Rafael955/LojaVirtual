@@ -23,6 +23,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>MsgErro.resx</DependentUpon>
     </Compile>
+    <Compile Update="Libraries\Lang\MsgSucesso.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MsgSucesso.resx</DependentUpon>
+    </Compile>
     <Compile Update="Libraries\SensibleData\SensibleData.Designer.cs">
       <DependentUpon>SensibleData.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -34,6 +39,10 @@
     <EmbeddedResource Update="Libraries\Lang\MsgErro.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MsgErro.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Libraries\Lang\MsgSucesso.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MsgSucesso.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Libraries\SensibleData\SensibleData.resx">
       <LastGenOutput>SensibleData.Designer.cs</LastGenOutput>

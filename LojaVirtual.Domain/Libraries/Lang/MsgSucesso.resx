@@ -117,19 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MsgErro001" xml:space="preserve">
-    <value>O campo {0} é obrigatório!</value>
+  <data name="MsgCategoriaAddSucesso" xml:space="preserve">
+    <value>Categoria salva com sucesso!</value>
   </data>
-  <data name="MsgErro002" xml:space="preserve">
-    <value>O campo {0} deve ter no mínimo {1} caracteres!</value>
+  <data name="MsgCategoriaAltSucesso" xml:space="preserve">
+    <value>Categoria alterada com sucesso!</value>
   </data>
-  <data name="MsgErro003" xml:space="preserve">
-    <value>O campo {0} deve ter no máximo {1} caracteres!</value>
+  <data name="MsgCategoriaDelSucesso" xml:space="preserve">
+    <value>Categoria excluida com sucesso!</value>
   </data>
-  <data name="MsgErro004" xml:space="preserve">
-    <value>O campo {0} não é válido</value>
+  <data name="MsgColaboradorAddSucesso" xml:space="preserve">
+    <value>Colaborador salva com sucesso!</value>
   </data>
-  <data name="MsgErro005" xml:space="preserve">
-    <value>O valor do campo {0} não confere com o valor do campo {1}</value>
+  <data name="MsgColaboradorAltSucesso" xml:space="preserve">
+    <value>Colaborador alterada com sucesso!</value>
+  </data>
+  <data name="MsgColaboradorDelSucesso" xml:space="preserve">
+    <value>Colaborador excluida com sucesso!</value>
   </data>
 </root>
