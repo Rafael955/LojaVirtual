@@ -20,7 +20,6 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">@Html.DisplayNameFor(x => x.First().Id)</th>
                     <th scope="col">@Html.DisplayNameFor(x => x.First().Nome)</th>
                     <th scope="col">@Html.DisplayNameFor(x => x.First().Email)</th>
                     <th scope="col">Ações</th>
@@ -30,7 +29,6 @@
                 @foreach (Colaborador colaborador in Model)
                 {
                     <tr>
-                        <th scope="row">@colaborador.Id</th>
                         <td>@colaborador.Nome</td>
                         <td>@colaborador.Email</td>
                         <td>

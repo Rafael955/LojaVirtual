@@ -13,6 +13,7 @@ namespace LojaVirtual.Domain.Models
         public Colaborador()
         {
             Id = Guid.NewGuid();
+            Tipo = TipoColaborador.COMUM;
         }
 
         [Required(ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro001")]
@@ -30,13 +31,13 @@ namespace LojaVirtual.Domain.Models
 
         [NotMapped]
         [Display(Name = "Confirmar Senha")]
-        [Compare("Senha", ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro001")]
+        [Compare("Senha", ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro005")]
         public string ConfirmaSenha { get; set; }
 
         private string _tipo;
 
         [Display(Name = "Tipo de Colaborador")]
-        [Required(ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro005")]
+        [Required(ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro001")]
         public string Tipo
         {
             get { return _tipo; }

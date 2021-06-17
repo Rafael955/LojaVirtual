@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MeuColaborador = LojaVirtual.Domain.Models.Colaborador;
 
 namespace LojaVirtual.Areas.Colaborador.Controllers
 {
@@ -34,7 +33,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> Cadastrar([FromForm] MeuColaborador colaborador)
+        public async Task<IActionResult> Cadastrar([FromForm] Domain.Models.Colaborador colaborador)
         {
             if (ModelState.IsValid)
             {
@@ -51,11 +50,12 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         [HttpGet("[action]/{id:guid}")]
         public async Task<IActionResult> Atualizar(Guid id)
         {
-            return View();
+            var colaborador = await _colaboradorRepository.ObterPorId(id);
+            return View(colaborador);
         }
 
         [HttpPost("[action]/{id:guid}")]
-        public async Task<IActionResult> Atualizar([FromForm] MeuColaborador colaborador, Guid id)
+        public async Task<IActionResult> Atualizar([FromForm] Domain.Models.Colaborador colaborador, Guid id)
         {
             return View();
         }

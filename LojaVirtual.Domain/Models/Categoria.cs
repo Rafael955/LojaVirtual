@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Domain.Libraries;
+using LojaVirtual.Domain.Libraries.Lang;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
