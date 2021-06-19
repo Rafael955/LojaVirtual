@@ -15,7 +15,7 @@ namespace LojaVirtual.Domain.Interfaces.IRepositories
 
         Task Atualizar(T entity);
 
-        Task Remover(U id);
+        Task Remover(T entity);
 
         Task<T> ObterPorId(U id);
 

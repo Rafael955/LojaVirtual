@@ -83,7 +83,8 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         [HttpGet("[action]/{id:int}")]
         public async Task<IActionResult> Excluir(int id)
         {
-            await _categoriaRepository.Remover(id);
+            var categoria = await _categoriaRepository.ObterPorId(id);
+            await _categoriaRepository.Remover(categoria);
 
             TempData["MsgSucesso"] = MsgSucesso.MsgCategoriaDelSucesso;
 

@@ -38,11 +38,10 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             });
         }
 
-        public virtual async Task Remover(U id)
+        public virtual async Task Remover(T entity)
         {
             await Task.Run(() =>
             {
-                var entity = ObterPorId(id) as T;
                 _lista.Remove(entity);
             });
         }

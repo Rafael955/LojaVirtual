@@ -32,11 +32,6 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             });
         }
 
-        public override Task Remover(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<Cliente> Login(string email, string senha)
         {
             throw new NotImplementedException();

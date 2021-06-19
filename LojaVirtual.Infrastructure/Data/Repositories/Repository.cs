@@ -57,9 +57,8 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             return await _context.Set<T>().Where(predicate).ToListAsync();
         }
 
-        public virtual async Task Remover(U id)
+        public virtual async Task Remover(T entity)
         {
-            Task<T> entity = ObterPorId(id);
             _context.Remove(entity);
             await Salvar();
         }

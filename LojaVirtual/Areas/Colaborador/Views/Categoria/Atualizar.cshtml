@@ -1,8 +1,12 @@
-﻿@{
-    ViewData["Title"] = "Atualizar";
+﻿@model Categoria
+@{
+    ViewData["Title"] = "Atualizar Categoria";
 }
 <br />
-<h1>Atualizar</h1>
+<br />
+<h1>Atualizar Categoria</h1>
 <hr />
-
-<partial name="_partial.cshtml" />
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+    <partial name="_partial.cshtml" />
+</form>

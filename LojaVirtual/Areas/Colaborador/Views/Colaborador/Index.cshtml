@@ -33,7 +33,7 @@
                         <td>@colaborador.Email</td>
                         <td>
                             <a asp-action="Atualizar" asp-route-id="@colaborador.Id" class="btn btn-secondary"><i class="fas fa-pen"></i> Atualizar</a>
-                            <a asp-action="Excluir" asp-route-id="@colaborador.Id" class="btn btn-danger" data-colaborador="@colaborador.Nome"><i class="fas fa-trash"></i> Excluir</a>
+                            <a asp-action="Excluir" asp-route-id="@colaborador.Id" class="btn btn-danger delColaborador" data-colaborador="@colaborador.Nome"><i class="fas fa-trash"></i> Excluir</a>
                         </td>
                     </tr>
                 }

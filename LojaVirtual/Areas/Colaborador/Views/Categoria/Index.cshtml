@@ -39,7 +39,7 @@
                         </td>
                         <td>
                             <a asp-action="Atualizar" asp-route-id="@categoria.Id" class="btn btn-secondary"><i class="fas fa-pen"></i> Atualizar</a>
-                            <a asp-action="Excluir" asp-route-id="@categoria.Id" class="btn btn-danger" data-categoria="@categoria.Nome"><i class="fas fa-trash"></i> Excluir</a>
+                            <a asp-action="Excluir" asp-route-id="@categoria.Id" class="btn btn-danger delCategoria" data-categoria="@categoria.Nome"><i class="fas fa-trash"></i> Excluir</a>
                         </td>
                     </tr>
                 }

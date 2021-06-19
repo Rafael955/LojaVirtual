@@ -55,15 +55,29 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpPost("[action]/{id:guid}")]
-        public async Task<IActionResult> Atualizar([FromForm] Domain.Models.Colaborador colaborador, Guid id)
+        public async Task<IActionResult> Atualizar([FromForm] Domain.Models.Colaborador colaborador)
         {
+            if (ModelState.IsValid)
+            {
+                await _colaboradorRepository.Atualizar(colaborador);
+
+                TempData["MsgSucesso"] = MsgSucesso.MsgColaboradorAltSucesso;
+
+                return RedirectToAction(nameof(Index));
+            }
+
             return View();
         }
 
         [HttpGet("[action]/{id:guid}")]
         public async Task<IActionResult> Excluir(Guid id)
         {
-            return View();
+            var colaborador = await _colaboradorRepository.ObterPorId(id);
+            await _colaboradorRepository.Remover(colaborador);
+
+            TempData["MsgSucesso"] = MsgSucesso.MsgColaboradorDelSucesso;
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
