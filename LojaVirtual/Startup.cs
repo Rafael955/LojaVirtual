@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Net;
+using System.Net.Mail;
 
 namespace LojaVirtual
 {
@@ -30,6 +32,9 @@ namespace LojaVirtual
              *  Session - Configuração
              */
             services.ConfigureDependencies(Configuration);
+
+            /*SMTP*/
+            services.ConfigureSmtpClient(Configuration);
 
             services.Configure<CookiePolicyOptions>(options =>
             {
