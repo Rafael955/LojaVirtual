@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Domain.Interfaces.IRepositories;
+using LojaVirtual.Domain.Libraries;
 using LojaVirtual.Domain.Libraries.Lang;
 using LojaVirtual.Domain.Libraries.Texto;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +15,12 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
     public class ColaboradorController : Controller
     {
         private readonly IColaboradorRepository _colaboradorRepository;
+        private GerenciarEmail _gerenciarEmail;
 
-        public ColaboradorController(IColaboradorRepository colaboradorRepository)
+        public ColaboradorController(IColaboradorRepository colaboradorRepository, GerenciarEmail gerenciarEmail)
         {
             _colaboradorRepository = colaboradorRepository;
+            _gerenciarEmail = gerenciarEmail;
         }
 
         [HttpGet]
@@ -40,6 +43,10 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             {
                 //TODO - Gerar senha aleatoria, salvar nova senha, enviar por e-mail para o cliente!
                 await _colaboradorRepository.Adicionar(colaborador);
+
+                var novoColaborador = await _colaboradorRepository.Encontrar(x => x.Id == colaborador.Id);
+
+                _gerenciarEmail.EnviarSenhaParaColaboradorPorEmail(novoColaborador.FirstOrDefault());
 
                 TempData["MsgSucesso"] = MsgSucesso.MsgColaboradorAddSucesso;
 
@@ -91,7 +98,10 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
 
             await _colaboradorRepository.Atualizar(colaborador);
 
-            //TODO - Enviar e-mail
+            //TODO - Enviar e-mail com senha para colaborador
+            _gerenciarEmail.EnviarSenhaParaColaboradorPorEmail(colaborador);
+
+            TempData["MsgSucesso"] = MsgSucesso.MsgColaboradorNovaSenhaSucesso;
 
             return RedirectToAction(nameof(Index));
         }

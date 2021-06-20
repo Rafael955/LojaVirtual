@@ -27,6 +27,8 @@ namespace LojaVirtual.Configuration
 
                 return smtp;
             });
+
+            services.AddScoped<GerenciarEmail>();
         }
     }
 }

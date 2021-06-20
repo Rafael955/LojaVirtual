@@ -113,5 +113,14 @@ namespace LojaVirtual.Domain.Libraries.Lang {
                 return ResourceManager.GetString("MsgColaboradorDelSucesso", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Senha enviada com sucesso!.
+        /// </summary>
+        public static string MsgColaboradorNovaSenhaSucesso {
+            get {
+                return ResourceManager.GetString("MsgColaboradorNovaSenhaSucesso", resourceCulture);
+            }
+        }
     }
 }
