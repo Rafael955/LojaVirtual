@@ -96,7 +96,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
 
             colaborador.Senha = await KeyGenerator.GetUniqueKey(8);
 
-            await _colaboradorRepository.Atualizar(colaborador);
+            await _colaboradorRepository.AtualizarSenha(colaborador);
 
             //TODO - Enviar e-mail com senha para colaborador
             _gerenciarEmail.EnviarSenhaParaColaboradorPorEmail(colaborador);
