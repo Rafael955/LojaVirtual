@@ -29,6 +29,10 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             return await _lojaContext.Colaboradores.Where(x => x.Email == email && x.Senha == senha).FirstOrDefaultAsync();
         }
 
+        public Task<Colaborador> AtualizarSenha(Colaborador colaborador)
+        {
+        }
+
         public override async Task<IEnumerable<Colaborador>> ObterTodos()
         {
             return await _lojaContext.Colaboradores.Where(a => a.Tipo != TipoColaborador.GERENTE).ToListAsync();

@@ -34,7 +34,7 @@
                         <td>
                             <a asp-action="Atualizar" asp-route-id="@colaborador.Id" class="btn btn-secondary"><i class="fas fa-pen"></i> Atualizar</a>
                             <a asp-action="Excluir" asp-route-id="@colaborador.Id" class="btn btn-danger delColaborador" data-colaborador="@colaborador.Nome"><i class="fas fa-trash"></i> Excluir</a>
-                            <a asp-action="Atualizar" asp-route-id="@colaborador.Id" class="btn btn-secondary"><i class="fas fa-key"></i> Gerar Nova Senha</a>
+                            <a asp-action="GerarSenha" asp-route-id="@colaborador.Id" class="btn btn-secondary"><i class="fas fa-key"></i> Gerar Nova Senha</a>
                         </td>
                     </tr>
                 }

@@ -1,4 +1,5 @@
 ﻿using LojaVirtual.Domain.Libraries;
+using LojaVirtual.Domain.Libraries.SensibleData;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;

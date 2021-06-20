@@ -39,14 +39,14 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Cadastrar([FromForm] Domain.Models.Colaborador colaborador)
         {
+            ModelState.Remove("Senha");
             if (ModelState.IsValid)
             {
-                //TODO - Gerar senha aleatoria, salvar nova senha, enviar por e-mail para o cliente!
+                colaborador.Senha = await KeyGenerator.GetUniqueKey(8);
+
                 await _colaboradorRepository.Adicionar(colaborador);
 
-                var novoColaborador = await _colaboradorRepository.Encontrar(x => x.Id == colaborador.Id);
-
-                _gerenciarEmail.EnviarSenhaParaColaboradorPorEmail(novoColaborador.FirstOrDefault());
+                _gerenciarEmail.EnviarSenhaParaColaboradorPorEmail(colaborador);
 
                 TempData["MsgSucesso"] = MsgSucesso.MsgColaboradorAddSucesso;
 
