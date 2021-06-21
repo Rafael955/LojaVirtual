@@ -7,6 +7,13 @@ namespace LojaVirtual.Domain.Libraries
 {
     public class ColaboradorAutorizacaoAttribute : Attribute, IAuthorizationFilter
     {
+        private string _tipoColaboradorAutorizado;
+
+        public ColaboradorAutorizacaoAttribute(string TipoColaboradorAutorizado = TipoColaborador.COMUM)
+        {
+            _tipoColaboradorAutorizado = TipoColaboradorAutorizado;
+        }
+
         private LoginColaborador _loginColaborador;
 
         public void OnAuthorization(AuthorizationFilterContext context)
@@ -19,6 +26,13 @@ namespace LojaVirtual.Domain.Libraries
             {
                 //context.Result = new ContentResult { Content = "Acesso Negado!" };
                 context.Result = new RedirectToActionResult("Login", "Home", null);
+            }
+            else
+            {
+                if (colaborador.Tipo == TipoColaborador.COMUM && _tipoColaboradorAutorizado == TipoColaborador.GERENTE)
+                {
+                    context.Result = new ForbidResult();
+                }
             }
         }
     }

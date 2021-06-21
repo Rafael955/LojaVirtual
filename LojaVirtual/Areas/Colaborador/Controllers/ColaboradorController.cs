@@ -2,6 +2,7 @@
 using LojaVirtual.Domain.Libraries;
 using LojaVirtual.Domain.Libraries.Lang;
 using LojaVirtual.Domain.Libraries.Texto;
+using LojaVirtual.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
 {
     [Area("Colaborador")]
     [Route("[area]/[controller]")]
+    [ColaboradorAutorizacao(TipoColaborador.GERENTE)]
     public class ColaboradorController : Controller
     {
         private readonly IColaboradorRepository _colaboradorRepository;

@@ -53,7 +53,7 @@ namespace LojaVirtual.Domain.Models
 
     public abstract class TipoColaborador
     {
-        public static string COMUM = "C";
-        public static string GERENTE = "G";
+        public const string COMUM = "C";
+        public const string GERENTE = "G";
     }
 }
