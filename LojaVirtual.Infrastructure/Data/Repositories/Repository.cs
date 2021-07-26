@@ -39,12 +39,12 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
         public virtual async Task<IPagedList<T>> ObterTodosPaginado(int? pagina)
         {
             var NumeroDaPagina = pagina ?? 1;
-            return await _context.Set<T>().ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);
+            return await _context.Set<T>().AsNoTracking().ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);
         }
 
         public virtual async Task<IEnumerable<T>> ObterTodos()
         {
-            return await _context.Set<T>().ToListAsync();
+            return await _context.Set<T>().AsNoTracking().ToListAsync();
         }
 
         public virtual async Task<T> ObterPorId(U id)

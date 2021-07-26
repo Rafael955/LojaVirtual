@@ -5,7 +5,6 @@ using LojaVirtual.Domain.Libraries.Texto;
 using LojaVirtual.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -68,6 +67,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         [HttpPost("[action]/{id:guid}")]
         public async Task<IActionResult> Atualizar([FromForm] Domain.Models.Colaborador colaborador)
         {
+            ModelState.Remove("Senha");
             if (ModelState.IsValid)
             {
                 await _colaboradorRepository.Atualizar(colaborador);
@@ -77,7 +77,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View();
+            return View(colaborador);
         }
 
         [HttpGet("[action]/{id:guid}")]

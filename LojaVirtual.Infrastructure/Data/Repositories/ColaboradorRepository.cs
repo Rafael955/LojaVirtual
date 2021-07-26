@@ -29,12 +29,21 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             return await _lojaContext.Colaboradores.Where(x => x.Email == email && x.Senha == senha).FirstOrDefaultAsync();
         }
 
+        public override async Task Atualizar(Colaborador colaborador)
+        {
+            _lojaContext.Colaboradores.Update(colaborador);
+            _lojaContext.Entry(colaborador).Property(x => x.Senha).IsModified = false;
+            await _lojaContext.SaveChangesAsync();
+        }
+
         public async Task AtualizarSenha(Colaborador colaborador)
         {
             _lojaContext.Colaboradores.Update(colaborador);
+
             _lojaContext.Entry(colaborador).Property(x => x.Nome).IsModified = false;
             _lojaContext.Entry(colaborador).Property(x => x.Email).IsModified = false;
             _lojaContext.Entry(colaborador).Property(x => x.Tipo).IsModified = false;
+
             await _lojaContext.SaveChangesAsync();
         }
 
@@ -47,6 +56,11 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
         {
             var NumeroDaPagina = pagina ?? 1;
             return await _lojaContext.Colaboradores.Where(a => a.Tipo != TipoColaborador.GERENTE).ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);
+        }
+
+        public List<Colaborador> ObterPorEmail(string email)
+        {
+            return _lojaContext.Colaboradores.Where(x => x.Email == email).AsNoTracking().ToList();
         }
     }
 }

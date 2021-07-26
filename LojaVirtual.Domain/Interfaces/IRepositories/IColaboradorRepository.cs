@@ -10,6 +10,8 @@ namespace LojaVirtual.Domain.Interfaces.IRepositories
     {
         Task<Colaborador> Login(string email, string senha);
 
+        List<Colaborador> ObterPorEmail(string email);
+
         Task AtualizarSenha(Colaborador colaborador);
     }
 }
