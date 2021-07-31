@@ -28,6 +28,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpPost]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([FromForm] _Colaborador colaborador)
         {
             _Colaborador colaboradorDb = await _colaboradorRepo.Login(colaborador.Email, colaborador.Senha);

@@ -2,6 +2,7 @@ using LojaVirtual.Configuration;
 using LojaVirtual.Domain.Configs;
 using LojaVirtual.Domain.Interfaces.IRepositories;
 using LojaVirtual.Domain.Libraries;
+using LojaVirtual.Domain.Libraries.Middleware;
 using LojaVirtual.Infrastructure.Data.Context;
 using LojaVirtual.Infrastructure.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -74,6 +75,7 @@ namespace LojaVirtual
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseSession();
+            app.UseMiddleware<ValidateAntiForgeryTokenMiddleware>();
 
             app.UseRouting();
 

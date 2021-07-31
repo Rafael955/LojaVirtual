@@ -105,6 +105,7 @@ namespace LojaVirtual.Controllers
         }
 
         [HttpPost]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([FromForm] Cliente cliente)
         {
             Cliente clienteDB = await _clienteRepo.Login(cliente.Email, cliente.Senha);
