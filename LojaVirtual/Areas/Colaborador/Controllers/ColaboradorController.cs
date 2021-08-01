@@ -1,5 +1,6 @@
 ﻿using LojaVirtual.Domain.Interfaces.IRepositories;
 using LojaVirtual.Domain.Libraries;
+using LojaVirtual.Domain.Libraries.Filtro;
 using LojaVirtual.Domain.Libraries.Lang;
 using LojaVirtual.Domain.Libraries.Texto;
 using LojaVirtual.Domain.Models;
@@ -81,6 +82,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpGet("[action]/{id:guid}")]
+        [ValidateHttpReferer]
         public async Task<IActionResult> Excluir(Guid id)
         {
             var colaborador = await _colaboradorRepository.ObterPorId(id);
@@ -92,6 +94,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpGet("[action]/{id:guid}")]
+        [ValidateHttpReferer]
         public async Task<IActionResult> GerarSenha(Guid id)
         {
             Domain.Models.Colaborador colaborador = await _colaboradorRepository.ObterPorId(id);
