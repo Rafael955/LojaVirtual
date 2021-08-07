@@ -11,9 +11,9 @@ namespace LojaVirtual.Domain.Libraries.Filtro
         public void OnActionExecuting(ActionExecutingContext context)
         {
             //Este método é executado antes de passarmos pelos controlador
-            string referer = context.HttpContext.Request.Headers["Referer"].ToString(); //referer é uma prop do cabeçalho da requisição htttp que pode ser enviada ou não.
+            string referer = context.HttpContext.Request.Headers["Referer"].ToString(); //referer é uma prop do cabeçalho da requisição http que pode ser enviada ou não.
 
-            if (string.IsNullOrEmpty(referer)) //se referer for nulo quer dizer que houve tentativa de acessar diretamente por url um método como, por exemplo, excluir um conta, se for o caso retornamos um ContentResult bloqueando o acesso.
+            if (string.IsNullOrEmpty(referer)) //se referer for nulo quer dizer que houve tentativa de acessar diretamente por url um método como, por exemplo, excluir um conta, se for o caso retornamos um ContentResult bloqueando o acesso, só podemos excluir uma conta estando logado e clicando no botão de dentro do próprio site.
             {
                 context.Result = new ContentResult()
                 {

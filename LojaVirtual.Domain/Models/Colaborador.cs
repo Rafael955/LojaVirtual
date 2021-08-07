@@ -49,6 +49,10 @@ namespace LojaVirtual.Domain.Models
                 {
                     _tipo = value;
                 }
+                else
+                {
+                    _tipo = TipoColaborador.COMUM;
+                }
             }
         }
     }

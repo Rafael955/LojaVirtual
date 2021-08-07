@@ -1,5 +1,6 @@
 ﻿using LojaVirtual.Domain.Interfaces.IRepositories;
 using LojaVirtual.Domain.Libraries;
+using LojaVirtual.Domain.Libraries.Filtro;
 using LojaVirtual.Domain.Libraries.Lang;
 using LojaVirtual.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -81,6 +82,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpGet("[action]/{id:int}")]
+        [ValidateHttpReferer]
         public async Task<IActionResult> Excluir(int id)
         {
             var categoria = await _categoriaRepository.ObterPorId(id);

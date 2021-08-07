@@ -1,5 +1,6 @@
 ﻿using LojaVirtual.Domain.Interfaces.IRepositories;
 using LojaVirtual.Domain.Libraries;
+using LojaVirtual.Domain.Libraries.Filtro;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [ColaboradorAutorizacao]
+        [ValidateHttpReferer]
         public IActionResult Logout()
         {
             _loginColaborador.Logout();
