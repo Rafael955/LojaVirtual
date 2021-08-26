@@ -8,4 +8,8 @@
         var nomeDoColaborador = $(this).data("colaborador")
         confirm("Deseja realmente excluir o colaborador " + nomeDoColaborador + "?");
     });
+
+    $('.ativarDesativarCliente').on('click', function () {
+        confirm("Deseja realmente realizar esta operação?");
+    });
 });

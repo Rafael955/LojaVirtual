@@ -126,6 +126,15 @@
   <data name="MsgCategoriaDelSucesso" xml:space="preserve">
     <value>Categoria excluida com sucesso!</value>
   </data>
+  <data name="MsgClienteAddSucesso" xml:space="preserve">
+    <value>Cliente salva com sucesso!</value>
+  </data>
+  <data name="MsgClienteAltSucesso" xml:space="preserve">
+    <value>Cliente alterada com sucesso!</value>
+  </data>
+  <data name="MsgClienteDelSucesso" xml:space="preserve">
+    <value>Cliente excluida com sucesso!</value>
+  </data>
   <data name="MsgColaboradorAddSucesso" xml:space="preserve">
     <value>Colaborador salva com sucesso!</value>
   </data>

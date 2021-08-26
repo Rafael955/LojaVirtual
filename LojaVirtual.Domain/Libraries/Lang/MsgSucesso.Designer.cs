@@ -88,6 +88,33 @@ namespace LojaVirtual.Domain.Libraries.Lang {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Cliente salva com sucesso!.
+        /// </summary>
+        public static string MsgClienteAddSucesso {
+            get {
+                return ResourceManager.GetString("MsgClienteAddSucesso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Cliente alterada com sucesso!.
+        /// </summary>
+        public static string MsgClienteAltSucesso {
+            get {
+                return ResourceManager.GetString("MsgClienteAltSucesso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Cliente excluida com sucesso!.
+        /// </summary>
+        public static string MsgClienteDelSucesso {
+            get {
+                return ResourceManager.GetString("MsgClienteDelSucesso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Colaborador salva com sucesso!.
         /// </summary>
         public static string MsgColaboradorAddSucesso {

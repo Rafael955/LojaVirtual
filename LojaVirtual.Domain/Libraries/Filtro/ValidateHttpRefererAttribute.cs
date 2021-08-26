@@ -40,7 +40,8 @@ namespace LojaVirtual.Domain.Libraries.Filtro
         public void OnActionExecuted(ActionExecutedContext context)
         {
             //Este método é executado após passarmos pelos controlador
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return;
         }
     }
 }

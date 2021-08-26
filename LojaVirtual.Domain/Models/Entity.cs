@@ -8,6 +8,6 @@ namespace LojaVirtual.Domain.Models
         [Key]
         public virtual T Id { get; set; }
 
-        public DateTime DataCadastro { get; set; } = DateTime.Now;
+        public DateTime DataCadastro { get; private set; } = DateTime.Now;
     }
 }

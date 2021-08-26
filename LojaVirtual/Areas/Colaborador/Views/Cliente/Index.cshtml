@@ -1,0 +1,66 @@
+﻿@model IPagedList<Cliente>
+@{
+    ViewData["Title"] = "Colaboradores";
+}
+<br />
+<h1>Clientes</h1>
+<hr />
+
+@if (TempData["MsgSucesso"] != null)
+{
+    <p class="alert alert-success">
+        @TempData["MsgSucesso"]
+    </p>
+}
+
+@if (Model.Any())
+{
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">@Html.DisplayNameFor(x => x.First().Nome)</th>
+                    <th scope="col">@Html.DisplayNameFor(x => x.First().Email)</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Cliente cliente in Model)
+                {
+                    <tr>
+                        <td>@cliente.Nome</td>
+                        <td>@cliente.Email</td>
+                        <td>
+                            @if (cliente.Situacao == Situacao.ATIVO)
+                            {
+                                <a asp-action="AtivarDesativar" asp-controller="Cliente" asp-route-id="@cliente.Id" class="btn btn-danger ativarDesativarCliente"><i class="fas fa-pen"></i> Desativar</a>
+                            }
+                            else
+                            {
+                                <a asp-action="AtivarDesativar" asp-controller="Cliente" asp-route-id="@cliente.Id" class="btn btn-success ativarDesativarCliente"><i class="fas fa-pen"></i> Ativar</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @Html.PagedListPager((IPagedList)Model, pagina => Url.Action("Index", new { pagina })) <!-- Este trecho de código exibe os números das páginas-->
+}
+else
+{
+    <div class="alert alert-warning">
+        <center>Nenhum colaborador cadastrado</center>
+    </div>
+}
+@{
+    @*@if (categoria.CategoriaPai == null)
+        {
+            <span>---</span>
+        }
+        else
+        {
+            <span>@categoria.CategoriaPai.Id - @categoria.CategoriaPai.Nome</span>
+        }*@
+}
