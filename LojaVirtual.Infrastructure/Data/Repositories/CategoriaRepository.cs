@@ -20,7 +20,7 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
         {
         }
 
-        public override async Task<IPagedList<Categoria>> ObterTodosPaginado(int? pagina)
+        public override async Task<IPagedList<Categoria>> ObterTodosPaginado(int? pagina, string pesquisa)
         {
             var NumeroDaPagina = pagina ?? 1;
             return await _lojaContext.Categorias.Include(x => x.CategoriaPai).ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);

@@ -62,6 +62,11 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             return await _lista.AsQueryable().Where(predicate).ToListAsync();
         }
 
+        public Task<IPagedList<T>> ObterTodosPaginado(int? pagina, string pesquisa)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IPagedList<T>> ObterTodosPaginado(int? pagina)
         {
             throw new NotImplementedException();

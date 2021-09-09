@@ -52,7 +52,7 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             return await _lojaContext.Colaboradores.Where(a => a.Tipo != TipoColaborador.GERENTE).ToListAsync();
         }
 
-        public override async Task<IPagedList<Colaborador>> ObterTodosPaginado(int? pagina)
+        public override async Task<IPagedList<Colaborador>> ObterTodosPaginado(int? pagina, string pesquisa)
         {
             var NumeroDaPagina = pagina ?? 1;
             return await _lojaContext.Colaboradores.Where(a => a.Tipo != TipoColaborador.GERENTE).ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);

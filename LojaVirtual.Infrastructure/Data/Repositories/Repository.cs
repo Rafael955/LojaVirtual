@@ -42,6 +42,8 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             return await _context.Set<T>().AsNoTracking().ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);
         }
 
+        public abstract Task<IPagedList<T>> ObterTodosPaginado(int? pagina, string pesquisa);
+
         public virtual async Task<IEnumerable<T>> ObterTodos()
         {
             return await _context.Set<T>().AsNoTracking().ToListAsync();

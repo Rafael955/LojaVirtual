@@ -25,9 +25,9 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(int? pagina)
+        public async Task<IActionResult> Index(int? pagina, string pesquisa)
         {
-            var clientes = await _clienteRepository.ObterTodosPaginado(pagina);
+            var clientes = await _clienteRepository.ObterTodosPaginado(pagina, pesquisa);
             return View(clientes);
         }
 

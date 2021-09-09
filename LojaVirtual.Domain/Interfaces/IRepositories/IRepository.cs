@@ -23,6 +23,8 @@ namespace LojaVirtual.Domain.Interfaces.IRepositories
 
         Task<IPagedList<T>> ObterTodosPaginado(int? pagina);
 
+        Task<IPagedList<T>> ObterTodosPaginado(int? pagina, string pesquisa);
+
         Task<IEnumerable<T>> Encontrar(Expression<Func<T, bool>> predicate);
     }
 }
