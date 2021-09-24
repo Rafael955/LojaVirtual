@@ -1,5 +1,6 @@
 ﻿using LojaVirtual.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace LojaVirtual.Controllers
 {

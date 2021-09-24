@@ -11,7 +11,7 @@ namespace LojaVirtual.Domain.Models
     public class Categoria : Entity<int>
     {
         [Display(Name = "Código")]
-        public override int Id { get; set; }
+        public override int Id { get; protected set; }
 
         [Required(ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro001")]
         [MinLength(4, ErrorMessageResourceType = typeof(MsgErro), ErrorMessageResourceName = "MsgErro002")]
