@@ -34,7 +34,7 @@ namespace LojaVirtual.Domain.Models
 
         #endregion Relacionamento Entity Framework
 
-        public ICollection<Imagem> Imagens { get; set; }
+        public virtual ICollection<Imagem> Imagens { get; set; }
     }
 }
 
