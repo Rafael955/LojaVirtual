@@ -3,6 +3,7 @@ using LojaVirtual.Domain.Models;
 using LojaVirtual.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using X.PagedList;
@@ -20,10 +21,15 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
         {
         }
 
-        public override async Task<IPagedList<Categoria>> ObterTodosPaginado(int? pagina, string pesquisa)
+        public override async Task<IPagedList<Categoria>> ObterTodosPaginado(int? pagina)
         {
             var NumeroDaPagina = pagina ?? 1;
             return await _lojaContext.Categorias.Include(x => x.CategoriaPai).ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);
+        }
+
+        public override Task<IPagedList<Categoria>> ObterTodosPaginado(int? pagina, string pesquisa)
+        {
+            throw new NotImplementedException();
         }
     }
 }

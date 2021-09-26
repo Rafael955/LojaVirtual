@@ -20,10 +20,15 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
         {
         }
 
-        public override async Task<IPagedList<NewsletterEmail>> ObterTodosPaginado(int? pagina, string pesquisa)
+        public override async Task<IPagedList<NewsletterEmail>> ObterTodosPaginado(int? pagina)
         {
             var NumeroDaPagina = pagina ?? 1;
             return await _lojaContext.NewsletterEmails.ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);
+        }
+
+        public override Task<IPagedList<NewsletterEmail>> ObterTodosPaginado(int? pagina, string pesquisa)
+        {
+            throw new NotImplementedException();
         }
     }
 }

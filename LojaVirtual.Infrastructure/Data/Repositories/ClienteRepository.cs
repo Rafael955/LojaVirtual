@@ -33,7 +33,7 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             if (pesquisa != null)
             {
                 pesquisa = pesquisa.Trim();
-                return await _lojaContext.Clientes.Where(x => x.Nome.Contains(pesquisa) || x.Email.Contains(pesquisa)).ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);
+                return await _lojaContext.Clientes.Where(x => x.Nome.Contains(pesquisa.Trim()) || x.Email.Contains(pesquisa.Trim())).ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);
             }
 
             return await _lojaContext.Clientes.ToPagedListAsync(NumeroDaPagina, _registrosPorPagina);
