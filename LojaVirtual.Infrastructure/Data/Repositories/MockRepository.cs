@@ -71,5 +71,10 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public Task Remover(U id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

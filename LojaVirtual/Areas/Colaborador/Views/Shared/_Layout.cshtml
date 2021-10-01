@@ -84,7 +84,7 @@
                             </a>
                         </li>
 
-                        @if (colaborador.ObterColaborador().Tipo == TipoColaborador.GERENTE)
+                        @if (colaborador.ObterColaborador() != null && colaborador.ObterColaborador().Tipo == TipoColaborador.GERENTE)
                         {
                             <li class="nav-item">
                                 <a class="nav-link active" asp-action="Index" asp-controller="Colaborador">

@@ -17,6 +17,8 @@ namespace LojaVirtual.Domain.Interfaces.IRepositories
 
         Task Remover(T entity);
 
+        Task Remover(U id);
+
         Task<T> ObterPorId(U id);
 
         Task<IEnumerable<T>> ObterTodos();

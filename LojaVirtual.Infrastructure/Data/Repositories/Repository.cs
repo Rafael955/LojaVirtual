@@ -65,6 +65,13 @@ namespace LojaVirtual.Infrastructure.Data.Repositories
             await Salvar();
         }
 
+        public virtual async Task Remover(U id)
+        {
+            var entity = await _context.Set<T>().FindAsync(id);
+            _context.Remove(entity);
+            await Salvar();
+        }
+
         public virtual async Task Salvar()
         {
             await _context.SaveChangesAsync();

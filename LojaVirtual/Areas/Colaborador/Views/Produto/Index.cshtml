@@ -1,10 +1,10 @@
-﻿@model IPagedList<Cliente>
+﻿@model IPagedList<Produto>
 @{
-    ViewData["Title"] = "Clientes";
+    ViewData["Title"] = "Produtos";
     var pesquisa = Context.Request.Query["pesquisa"];
 }
 <br />
-<h1>Clientes</h1>
+<h1>Produtos</h1>
 <hr />
 
 <br />
@@ -15,7 +15,7 @@
 <form method="get">
     <div class="form-group row">
         <div class="col-md-8" style="padding-right:0;">
-            <input type="text" name="pesquisa" id="pesquisa" value="@pesquisa" class="form-control" placeholder="Digite o nome ou e-mail do cliente" style="border-top-right-radius: 0; border-bottom-right-radius: 0;
+            <input type="text" name="pesquisa" id="pesquisa" value="@pesquisa" class="form-control" placeholder="Digite o nome do produto" style="border-top-right-radius: 0; border-bottom-right-radius: 0;
 ">
         </div>
         <div class="col-md-4" style="padding-left:0;">
@@ -37,26 +37,24 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th scope="col">@Html.DisplayNameFor(x => x.First().Id)</th>
                     <th scope="col">@Html.DisplayNameFor(x => x.First().Nome)</th>
-                    <th scope="col">@Html.DisplayNameFor(x => x.First().Email)</th>
+                    <th scope="col">@Html.DisplayNameFor(x => x.First().Categoria)</th>
+                    <th scope="col">@Html.DisplayNameFor(x => x.First().Valor)</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (Cliente cliente in Model)
+                @foreach (Produto produto in Model)
                 {
                     <tr>
-                        <td>@cliente.Nome</td>
-                        <td>@cliente.Email</td>
+                        <td>@produto.Id</td>
+                        <td>@produto.Nome</td>
+                        <td>@produto.CategoriaId</td>
+                        <td>@produto.Valor</td>
                         <td>
-                            @if (cliente.Situacao == Situacao.ATIVO)
-                            {
-                                <a asp-action="AtivarDesativar" asp-controller="Cliente" asp-route-id="@cliente.Id" class="btn btn-danger ativarDesativarCliente"><i class="fas fa-pen"></i> Desativar</a>
-                            }
-                            else
-                            {
-                                <a asp-action="AtivarDesativar" asp-controller="Cliente" asp-route-id="@cliente.Id" class="btn btn-success ativarDesativarCliente"><i class="fas fa-pen"></i> Ativar</a>
-                            }
+                            <a asp-action="Atualizar" asp-route-id="@produto.Id" class="btn btn-secondary"><i class="fas fa-pen"></i> Atualizar</a>
+                            <a asp-action="Excluir" asp-route-id="@produto.Id" class="btn btn-danger"><i class="fas fa-trash"></i> Excluir</a>
                         </td>
                     </tr>
                 }
@@ -69,16 +67,6 @@
 else
 {
     <div class="alert alert-warning">
-        <center>Nenhum colaborador cadastrado</center>
+        <center>Nenhum produto cadastrado</center>
     </div>
-}
-@{
-    @*@if (categoria.CategoriaPai == null)
-        {
-            <span>---</span>
-        }
-        else
-        {
-            <span>@categoria.CategoriaPai.Id - @categoria.CategoriaPai.Nome</span>
-        }*@
 }
