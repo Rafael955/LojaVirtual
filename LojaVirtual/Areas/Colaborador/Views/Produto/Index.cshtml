@@ -10,7 +10,7 @@
 <br />
 <!--
     Formulário
-    -- QueryStrin: Colaborador/Cliente/Index?pesquisa={palavra_digitada}&pagina={numero_da_pagina}
+    -- QueryString: Colaborador/Cliente/Index?pesquisa={palavra_digitada}&pagina={numero_da_pagina}
 -->
 <form method="get">
     <div class="form-group row">
@@ -30,6 +30,8 @@
         @TempData["MsgSucesso"]
     </p>
 }
+
+<a asp-action="Cadastrar" class="btn btn-primary" style="margin:15px 0px"><i class="fas fa-plus-circle"></i> Cadastrar</a>
 
 @if (Model.Any())
 {

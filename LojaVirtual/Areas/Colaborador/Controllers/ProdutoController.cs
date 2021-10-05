@@ -22,5 +22,12 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             var produtos = await _produtoRepository.ObterTodosPaginado(pagina, pesquisa);
             return View(produtos);
         }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> Cadastrar()
+        {
+            return View();
+        }
+
     }
 }
